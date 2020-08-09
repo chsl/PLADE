@@ -14,7 +14,17 @@
 4. 具体使用说明：  
     1、下载南亮亮教授公开的点云处理软件[Mapple ](https://3d.bk.tudelft.nl/liangliang/software.html)  
     2、使用该软件对点云数据进行预处理，包括：  
-        (1) 下采样，按照如下图所示操作  
-![image](plane_based_registration/image/downsample1.png)
-![image](plane_based_registration/image/downsample2.png)
+        (1) 下采样，按照如下图所示操作, 一般情况下，对于室内点云，点间距建议下采样到0.005-0.01mm，对于室外点云数据，点间距建议下采样到0.01-0.05mm
+![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample1.png)
+![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample2.png)  
+        (2) 如果输入的点数据不包括法线信息，需要手动计算法线，按照如下进行操作
+![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/normals.png)  
+        (3) 进行平面的提取操作
+![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane1.png)
+![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane2.png)
+提取完平面之后，默认界面是不会显示的，需要按照如下图所示切换下显示模式，同一种颜色的点表示属于同一个平面
+![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane3.png)  
+        (4) 保存提取的平面数据为vg格式  
+        (5) 编译plane_based_registration 项目中的parse_VG文件，对上一步中保存的数据进行处理并查看平面的法向，算法实现中要求两个待配准的 点云数据中相对应的两个平面法向相同，如果不相同，需要按照提示进行下翻转操作，操作完成后，会生成相应的文件用于下一步操作  
+        (6) 编译plane_based_registration 项目中的registration文件，按提示进行配准操作
         
