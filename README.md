@@ -11,5 +11,6 @@
 3. 工程包括两部分：  
 -     1、pointcloud_processing：主要包括一些点云处理的算法  
 -     2、plane_based_registration：点云注册相关的代码  
-
+4. 具体使用说明：  
+    下载南亮亮教授公开的点云处理软件Mapple[： ](https://3d.bk.tudelft.nl/liangliang/software.html)
 
