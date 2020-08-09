@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0C634703-9FC6-4744-A944-A00C53CD6042}</ProjectGuid>
+    <RootNamespace>PrimitiveShapesVC8</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>3rd_ransac</ProjectName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/GR -D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;TIMINGLEVEL0;VERBOSE;WIN32;_DEBUG;_LIB;_USE_MATH_DEFINES;VERBOSE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4503;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/GR -D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;TIMINGLEVEL1;TIMINGLEVEL0;WIN32;NDEBUG;_RELEASE;_LIB;_USE_MATH_DEFINES;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4503;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Bitmap.cpp" />
+    <ClCompile Include="Candidate.cpp" />
+    <ClCompile Include="MiscLib\Random.cpp" />
+    <ClCompile Include="MiscLib\RefCount.cpp" />
+    <ClCompile Include="PointCloud.cpp" />
+    <ClCompile Include="RansacShapeDetector.cpp" />
+    <ClCompile Include="solve.cpp" />
+    <ClCompile Include="BitmapPrimitiveShape.cpp">
+      <ForceConformanceInForLoopScope Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ForceConformanceInForLoopScope>
+    </ClCompile>
+    <ClCompile Include="ConePrimitiveShape.cpp" />
+    <ClCompile Include="ConePrimitiveShapeConstructor.cpp" />
+    <ClCompile Include="CylinderPrimitiveShape.cpp" />
+    <ClCompile Include="CylinderPrimitiveShapeConstructor.cpp" />
+    <ClCompile Include="PlanePrimitiveShape.cpp" />
+    <ClCompile Include="PlanePrimitiveShapeConstructor.cpp" />
+    <ClCompile Include="SpherePrimitiveShape.cpp" />
+    <ClCompile Include="SpherePrimitiveShapeConstructor.cpp" />
+    <ClCompile Include="TorusPrimitiveShape.cpp" />
+    <ClCompile Include="TorusPrimitiveShapeConstructor.cpp" />
+    <ClCompile Include="Cone.cpp" />
+    <ClCompile Include="Cylinder.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Full</Optimization>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Torus.cpp" />
+    <ClCompile Include="LowStretchSphereParametrization.cpp" />
+    <ClCompile Include="LowStretchTorusParametrization.cpp" />
+    <ClCompile Include="SimpleTorusParametrization.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="basic.h" />
+    <ClInclude Include="Bitmap.h" />
+    <ClInclude Include="Candidate.h" />
+    <ClInclude Include="FlatNormalThreshPointCompatibilityFunc.h" />
+    <ClInclude Include="GfxTL\AABox.h" />
+    <ClInclude Include="GfxTL\AABox.hpp" />
+    <ClInclude Include="GfxTL\AACube.h" />
+    <ClInclude Include="GfxTL\AACube.hpp" />
+    <ClInclude Include="GfxTL\AACubeTree.h" />
+    <ClInclude Include="GfxTL\AACubeTree.hpp" />
+    <ClInclude Include="GfxTL\AAKdTree.h" />
+    <ClInclude Include="GfxTL\AAKdTree.hpp" />
+    <ClInclude Include="GfxTL\AAPlane.h" />
+    <ClInclude Include="GfxTL\AAPlane.hpp" />
+    <ClInclude Include="GfxTL\Array.h" />
+    <ClInclude Include="GfxTL\ArrayArithmetic.h" />
+    <ClInclude Include="GfxTL\BaseTree.h" />
+    <ClInclude Include="GfxTL\BaseTree.hpp" />
+    <ClInclude Include="GfxTL\BBoxBuildInformationTreeStrategy.h" />
+    <ClInclude Include="GfxTL\BBoxDistanceKdTreeStrategy.h" />
+    <ClInclude Include="GfxTL\BucketSizeMaxLevelSubdivisionTreeStrategy.h" />
+    <ClInclude Include="GfxTL\BucketSizeSubdivisionTreeStrategy.h" />
+    <ClInclude Include="GfxTL\CellBBoxBuildInformationKdTreeStrategy.h" />
+    <ClInclude Include="GfxTL\CellCenterAACubeTreeStrategy.h" />
+    <ClInclude Include="GfxTL\CellLevelTreeStrategy.h" />
+    <ClInclude Include="GfxTL\CellParentTreeStrategy.h" />
+    <ClInclude Include="GfxTL\CellRangeDataTreeStrategy.h" />
+    <ClInclude Include="GfxTL\CellSizeDataTreeStrategy.h" />
+    <ClInclude Include="GfxTL\Covariance.h" />
+    <ClInclude Include="GfxTL\DynVectorKernel.h" />
+    <ClInclude Include="GfxTL\FaceNeighborAACubeTreeStrategy.h" />
+    <ClInclude Include="GfxTL\FlatCopyVector.h" />
+    <ClInclude Include="GfxTL\Frame.h" />
+    <ClInclude Include="GfxTL\HyperplaneCoordinateSystem.h" />
+    <ClInclude Include="GfxTL\ImmediateTreeDataKernels.h" />
+    <ClInclude Include="GfxTL\IncrementalDistanceKdTreeStrategy.h" />
+    <ClInclude Include="GfxTL\IndexedIterator.h" />
+    <ClInclude Include="GfxTL\IndexedTreeDataKernels.h" />
+    <ClInclude Include="GfxTL\IndexedTreeDataStrategy.h" />
+    <ClInclude Include="GfxTL\Jacobi.h" />
+    <ClInclude Include="GfxTL\KdTree.h" />
+    <ClInclude Include="GfxTL\KdTree.hpp" />
+    <ClInclude Include="GfxTL\L1Norm.h" />
+    <ClInclude Include="GfxTL\L2Norm.h" />
+    <ClInclude Include="GfxTL\LevelBuildInformationTreeStrategy.h" />
+    <ClInclude Include="GfxTL\LimitedHeap.h" />
+    <ClInclude Include="GfxTL\MathHelper.h" />
+    <ClInclude Include="GfxTL\MatrixXX.h" />
+    <ClInclude Include="GfxTL\MaxIntervalSplittingKdTreeStrategy.h" />
+    <ClInclude Include="GfxTL\MaxLevelSubdivisionTreeStrategy.h" />
+    <ClInclude Include="GfxTL\MaxNorm.h" />
+    <ClInclude Include="GfxTL\Mean.h" />
+    <ClInclude Include="GfxTL\NearestNeighbor.h" />
+    <ClInclude Include="GfxTL\NearestNeighbors.h" />
+    <ClInclude Include="GfxTL\NullClass.h" />
+    <ClInclude Include="GfxTL\NullStrategy.h" />
+    <ClInclude Include="GfxTL\NullStrategy.hpp" />
+    <ClInclude Include="GfxTL\NullTreeStrategy.h" />
+    <ClInclude Include="GfxTL\OnOff.h" />
+    <ClInclude Include="GfxTL\Orientation.h" />
+    <ClInclude Include="GfxTL\Plane.h" />
+    <ClInclude Include="GfxTL\Plane.hpp" />
+    <ClInclude Include="GfxTL\ScalarTypeConversion.h" />
+    <ClInclude Include="GfxTL\ScalarTypeDeferer.h" />
+    <ClInclude Include="GfxTL\ShuffleIndicesTreeDataKernelStrategy.h" />
+    <ClInclude Include="GfxTL\SlidingMidpointSplittingKdTreeStrategy.h" />
+    <ClInclude Include="GfxTL\StdContainerAdaptor.h" />
+    <ClInclude Include="GfxTL\StdOverrides.h" />
+    <ClInclude Include="GfxTL\Swap.h" />
+    <ClInclude Include="GfxTL\VectorKernel.h" />
+    <ClInclude Include="GfxTL\VectorXD.h" />
+    <ClInclude Include="GfxTL\WeightFunc.h" />
+    <ClInclude Include="Grid.h" />
+    <ClInclude Include="IndexIterator.h" />
+    <ClInclude Include="MiscLib\AlignedAllocator.h" />
+    <ClInclude Include="MiscLib\NoShrinkVector.h" />
+    <ClInclude Include="MiscLib\Pair.h" />
+    <ClInclude Include="MiscLib\Performance.h" />
+    <ClInclude Include="MiscLib\Random.h" />
+    <ClInclude Include="MiscLib\RefCount.h" />
+    <ClInclude Include="MiscLib\RefCounted.h" />
+    <ClInclude Include="MiscLib\RefCountPtr.h" />
+    <ClInclude Include="MiscLib\Vector.h" />
+    <ClInclude Include="Octree.h" />
+    <ClInclude Include="PointCloud.h" />
+    <ClInclude Include="RansacShapeDetector.h" />
+    <ClInclude Include="RebuildAACubeTreeStrategy.h" />
+    <ClInclude Include="ScoreAACubeTreeStrategy.h" />
+    <ClInclude Include="ScoreComputer.h" />
+    <ClInclude Include="ScorePrimitiveShapeVisitor.h" />
+    <ClInclude Include="BasePrimitiveShape.h" />
+    <ClInclude Include="BitmapPrimitiveShape.h" />
+    <ClInclude Include="ConePrimitiveShape.h" />
+    <ClInclude Include="ConePrimitiveShapeConstructor.h" />
+    <ClInclude Include="CylinderPrimitiveShape.h" />
+    <ClInclude Include="CylinderPrimitiveShapeConstructor.h" />
+    <ClInclude Include="PlanePrimitiveShape.h" />
+    <ClInclude Include="PlanePrimitiveShapeConstructor.h" />
+    <ClInclude Include="PrimitiveShape.h" />
+    <ClInclude Include="PrimitiveShapeConstructor.h" />
+    <ClInclude Include="PrimitiveShapeVisitor.h" />
+    <ClInclude Include="SpherePrimitiveShape.h" />
+    <ClInclude Include="SpherePrimitiveShapeConstructor.h" />
+    <ClInclude Include="TorusPrimitiveShape.h" />
+    <ClInclude Include="TorusPrimitiveShapeConstructor.h" />
+    <ClInclude Include="Cone.h" />
+    <ClInclude Include="Cylinder.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Torus.h" />
+    <ClInclude Include="LevMarFitting.h" />
+    <ClInclude Include="LevMarFunc.h" />
+    <ClInclude Include="LevMarLSWeight.h" />
+    <ClInclude Include="LowStretchSphereParametrization.h" />
+    <ClInclude Include="LowStretchTorusParametrization.h" />
+    <ClInclude Include="SimpleTorusParametrization.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,46 @@
+﻿生成启动时间为 2017/11/7 10:34:53。
+     1>项目“D:\ThirdParty_dll\ann_1.1.2\MS_Win32\dll\dll.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /D _USRDLL /D DLL_EXPORTS /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D DLL_EXPORTS /D ANN_PERF /D ANN_NO_RANDOM /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\ANN.cpp ..\..\src\bd_pr_search.cpp ..\..\src\bd_search.cpp ..\..\src\bd_tree.cpp ..\..\src\brute.cpp ..\..\src\kd_pr_search.cpp ..\..\src\kd_search.cpp ..\..\src\kd_split.cpp ..\..\src\kd_tree.cpp ..\..\src\kd_util.cpp ..\..\src\perf.cpp
+         ANN.cpp
+         bd_pr_search.cpp
+         bd_search.cpp
+         bd_tree.cpp
+         brute.cpp
+         kd_pr_search.cpp
+         kd_search.cpp
+         kd_split.cpp
+         kd_tree.cpp
+         kd_util.cpp
+         perf.cpp
+         正在生成代码...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D DLL_EXPORTS /D ANN_PERF /D ANN_NO_RANDOM /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\bd_fix_rad_search.cpp ..\..\src\kd_dump.cpp ..\..\src\kd_fix_rad_search.cpp
+         bd_fix_rad_search.cpp
+         kd_dump.cpp
+         kd_fix_rad_search.cpp
+         正在生成代码...
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1137,5): warning MSB8012: TargetPath(D:\ThirdParty_dll\ann_1.1.2\MS_Win32\dll\.\Debug\dll.dll) does not match the Linker's OutputFile property value (D:\ThirdParty_dll\ann_1.1.2\MS_Win32\bin\ANN.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1139,5): warning MSB8012: TargetName(dll) does not match the Linker's OutputFile property value (ANN). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\ANN.dll" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug\ANN.pdb" /TLBID:1 /DYNAMICBASE:NO /IMPLIB:".\Debug\ANN.lib" /MACHINE:X86 /SAFESEH /DLL .\Debug/ANN.obj
+         .\Debug/bd_fix_rad_search.obj
+         .\Debug/bd_pr_search.obj
+         .\Debug/bd_search.obj
+         .\Debug/bd_tree.obj
+         .\Debug/brute.obj
+         .\Debug/kd_dump.obj
+         .\Debug/kd_fix_rad_search.obj
+         .\Debug/kd_pr_search.obj
+         .\Debug/kd_search.obj
+         .\Debug/kd_split.obj
+         .\Debug/kd_tree.obj
+         .\Debug/kd_util.obj
+         .\Debug/perf.obj
+     1>ANN.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/SAFESEH”规范)
+            正在创建库 .\Debug\ANN.lib 和对象 .\Debug\ANN.exp
+         dll.vcxproj -> D:\ThirdParty_dll\ann_1.1.2\MS_Win32\dll\.\Debug\dll.dll
+     1>已完成生成项目“D:\ThirdParty_dll\ann_1.1.2\MS_Win32\dll\dll.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:08.36

@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\PrimitiveShapes">
+      <UniqueIdentifier>{b182b993-bac7-4e7a-b29e-efdf667ff1b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes">
+      <UniqueIdentifier>{2d17262d-3945-439f-ac64-13ea6d600251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Parametrizations">
+      <UniqueIdentifier>{ddaef3ee-ad61-4b47-a9f9-5a2d69d21a65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\PrimitiveShapes">
+      <UniqueIdentifier>{184efd97-6996-4784-af96-60ad4e2a5040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shapes">
+      <UniqueIdentifier>{e0abd4cb-8e5d-4dc1-80a8-e88537fa58b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LevMar">
+      <UniqueIdentifier>{538b0b9a-1669-4fb0-a736-0b84b28f56af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Parametrizations">
+      <UniqueIdentifier>{9c6caf40-3c60-4c98-9f79-6b5678a59dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MiscLib">
+      <UniqueIdentifier>{17ee4769-c1cc-4ca7-b590-19c1a11db7b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GfxTL">
+      <UniqueIdentifier>{83845b6b-75e2-4221-ab8d-93f1e31b8916}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Bitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Candidate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PointCloud.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RansacShapeDetector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="solve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapPrimitiveShape.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="ConePrimitiveShape.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="ConePrimitiveShapeConstructor.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="CylinderPrimitiveShape.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="CylinderPrimitiveShapeConstructor.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanePrimitiveShape.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanePrimitiveShapeConstructor.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="SpherePrimitiveShape.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="SpherePrimitiveShapeConstructor.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="TorusPrimitiveShape.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="TorusPrimitiveShapeConstructor.cpp">
+      <Filter>Source Files\PrimitiveShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Cone.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Cylinder.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Torus.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="LowStretchSphereParametrization.cpp">
+      <Filter>Source Files\Parametrizations</Filter>
+    </ClCompile>
+    <ClCompile Include="LowStretchTorusParametrization.cpp">
+      <Filter>Source Files\Parametrizations</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleTorusParametrization.cpp">
+      <Filter>Source Files\Parametrizations</Filter>
+    </ClCompile>
+    <ClCompile Include="MiscLib\Random.cpp">
+      <Filter>MiscLib</Filter>
+    </ClCompile>
+    <ClCompile Include="MiscLib\RefCount.cpp">
+      <Filter>MiscLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="basic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Candidate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlatNormalThreshPointCompatibilityFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Octree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PointCloud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RansacShapeDetector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RebuildAACubeTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreAACubeTreeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComputer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScorePrimitiveShapeVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BasePrimitiveShape.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapPrimitiveShape.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="ConePrimitiveShape.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="ConePrimitiveShapeConstructor.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="CylinderPrimitiveShape.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="CylinderPrimitiveShapeConstructor.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanePrimitiveShape.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanePrimitiveShapeConstructor.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveShape.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveShapeConstructor.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveShapeVisitor.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="SpherePrimitiveShape.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="SpherePrimitiveShapeConstructor.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="TorusPrimitiveShape.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="TorusPrimitiveShapeConstructor.h">
+      <Filter>Header Files\PrimitiveShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Cone.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Cylinder.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Torus.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="LevMarFitting.h">
+      <Filter>Header Files\LevMar</Filter>
+    </ClInclude>
+    <ClInclude Include="LevMarFunc.h">
+      <Filter>Header Files\LevMar</Filter>
+    </ClInclude>
+    <ClInclude Include="LevMarLSWeight.h">
+      <Filter>Header Files\LevMar</Filter>
+    </ClInclude>
+    <ClInclude Include="LowStretchSphereParametrization.h">
+      <Filter>Header Files\Parametrizations</Filter>
+    </ClInclude>
+    <ClInclude Include="LowStretchTorusParametrization.h">
+      <Filter>Header Files\Parametrizations</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleTorusParametrization.h">
+      <Filter>Header Files\Parametrizations</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscLib\AlignedAllocator.h">
+      <Filter>MiscLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscLib\NoShrinkVector.h">
+      <Filter>MiscLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscLib\Pair.h">
+      <Filter>MiscLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscLib\Performance.h">
+      <Filter>MiscLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscLib\Random.h">
+      <Filter>MiscLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscLib\RefCount.h">
+      <Filter>MiscLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscLib\RefCounted.h">
+      <Filter>MiscLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscLib\RefCountPtr.h">
+      <Filter>MiscLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscLib\Vector.h">
+      <Filter>MiscLib</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AABox.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AABox.hpp">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AACube.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AACube.hpp">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AACubeTree.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AACubeTree.hpp">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AAKdTree.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AAKdTree.hpp">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AAPlane.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\AAPlane.hpp">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\Array.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\ArrayArithmetic.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\BaseTree.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\BaseTree.hpp">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\BBoxBuildInformationTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\BBoxDistanceKdTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\BucketSizeMaxLevelSubdivisionTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\BucketSizeSubdivisionTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\CellBBoxBuildInformationKdTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\CellCenterAACubeTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\CellLevelTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\CellParentTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\CellRangeDataTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\CellSizeDataTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\Covariance.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\DynVectorKernel.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\FaceNeighborAACubeTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\FlatCopyVector.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\Frame.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\HyperplaneCoordinateSystem.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\ImmediateTreeDataKernels.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\IncrementalDistanceKdTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\IndexedIterator.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\IndexedTreeDataKernels.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\IndexedTreeDataStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\Jacobi.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\KdTree.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\KdTree.hpp">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\L1Norm.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\L2Norm.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\LevelBuildInformationTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\LimitedHeap.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\MathHelper.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\MatrixXX.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\MaxIntervalSplittingKdTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\MaxLevelSubdivisionTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\MaxNorm.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\Mean.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\NearestNeighbor.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\NearestNeighbors.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\NullClass.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\NullStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\NullStrategy.hpp">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\NullTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\OnOff.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\Orientation.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\Plane.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\Plane.hpp">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\ScalarTypeConversion.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\ScalarTypeDeferer.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\ShuffleIndicesTreeDataKernelStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\SlidingMidpointSplittingKdTreeStrategy.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\StdContainerAdaptor.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\StdOverrides.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\Swap.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\VectorKernel.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\VectorXD.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxTL\WeightFunc.h">
+      <Filter>Header Files\GfxTL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>
