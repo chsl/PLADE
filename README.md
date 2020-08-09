@@ -15,6 +15,6 @@
     1、下载南亮亮教授公开的点云处理软件[Mapple ](https://3d.bk.tudelft.nl/liangliang/software.html)  
     2、使用该软件对点云数据进行预处理，包括：  
         (1) 下采样，按照如下图所示操作  
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample1.png)
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample2.png)
+![image](plane_based_registration/image/downsample1.png)
+![image](plane_based_registration/image/downsample2.png)
         
