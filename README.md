@@ -24,7 +24,7 @@
 ![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane2.png)
 提取完平面之后，默认界面是不会显示的，需要按照如下图所示切换下显示模式，同一种颜色的点表示属于同一个平面
 ![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane3.png)  
-        (4) 保存提取的平面数据为vg格式  
+        (4) 保存提取的平面数据为vg格式，并同时以相同的文件名保存一份为bpn格式的数据  
         (5) 编译plane_based_registration 项目中的parse_VG文件，对上一步中保存的数据进行处理并查看平面的法向，算法实现中要求两个待配准的 点云数据中相对应的两个平面法向相同，如果不相同，需要按照提示进行下翻转操作，操作完成后，会生成相应的文件用于下一步操作  
         (6) 编译plane_based_registration 项目中的registration文件，按提示进行配准操作
         
