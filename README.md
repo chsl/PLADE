@@ -4,9 +4,9 @@
 ## Instructions for use:  
 1. Download the code, open it in visual studio, the entry file is "PLADE.sln"
 1. Dependencies:  
--     1、[Opencv ](https://opencv.org/)  
--     2、[boost ](https://www.boost.org/)  
--     3、[PCL ](https://pointclouds.org/)  
+-     1、Opencv <https://opencv.org/>  
+-     2、boost <https://www.boost.org/>  
+-     3、PCL <https://pointclouds.org/> 
     Please modify "opencv2410.props", "pcl1.8.0_debug.props" and "pcl1.8.0_release.props" after updating the third-party library
 3. The project consists of two parts:
 -     1、pointcloud_processing: mainly includeing some point cloud processing algorithms
