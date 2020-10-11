@@ -26,34 +26,33 @@
 ![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane3.png)  
         (4) 保存提取的平面数据为vg格式，并同时以相同的文件名保存一份为bpn格式的数据  
         (5) 编译plane_based_registration 项目中的parse_VG文件，对上一步中保存的数据进行处理并查看平面的法向，算法实现中要求两个待配准的 点云数据中相对应的两个平面法向相同，如果不相同，需要按照提示进行下翻转操作，操作完成后，会生成相应的文件用于下一步操作  
-        (6) 编译plane_based_registration 项目中的registration文件，按提示进行配准操作
-        
+        (6) 编译plane_based_registration 项目中的registration文件，按提示进行配准操作  
 # PLADE
 ## PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap
 
 ## Instructions for use:  
 1. Download the entire code warehouse, open it in visual studio, the entry file is "PLADE.sln"
-1. Dependent third-party libraries:
--1. [Opencv](https://opencv.org/)
--2. [boost](https://www.boost.org/)
--3. [PCL](https://pointclouds.org/)
+1. Dependencies:  
+-     1、[Opencv](https://opencv.org/)  
+-     2、[boost](https://www.boost.org/)  
+-     3、[PCL](https://pointclouds.org/)  
     Please modify "opencv2410.props", "pcl1.8.0_debug.props" and "pcl1.8.0_release.props" after updating the third-party library
 3. The project consists of two parts:
--1. pointcloud_processing: mainly includes some point cloud processing algorithms
--2. plane_based_registration: code related to point cloud registration
+-     1、pointcloud_processing: mainly includeing some point cloud processing algorithms
+-     2、plane_based_registration: code related to point cloud registration
 4. Specific instructions for use:
     1. Download the point cloud processing software [Mapple] (https://3d.bk.tudelft.nl/liangliang/software.html) published by Professor Nan Liangliang
-    2. Use this software to preprocess point cloud data, including:
-        (1) Downsampling, operate as shown in the figure below. Generally, for indoor point clouds, the point spacing is recommended to be down to 0.005-0.01mm, and for outdoor point cloud data, the point spacing is recommended to be down to 0.01-0.05mm.
+    2. Use this software to preprocess point cloud data, including:  
+        (1) Downsampling, as shown in the figure below. Generally, for indoor point clouds, the point spacing is recommended to be down to 0.005-0.01mm, and for outdoor point cloud data, the point spacing is recommended to be down to 0.01-0.05mm.
 ![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample1.png)
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample2.png)
+![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample2.png)  
         (2) If the input point data does not include normal information, you need to manually calculate the normal, and proceed as follows
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/normals.png)
+![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/normals.png)  
         (3) Perform plane extraction operations
 ![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane1.png)
 ![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane2.png)
 After the plane is extracted, the default interface will not be displayed. You need to switch the display mode as shown in the figure below. The points of the same color indicate that they belong to the same plane.
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane3.png)
-        (4) Save the extracted plane data in vg format, and save a copy of data in bpn format with the same file name at the same time
-        (5) Compile the parse_VG file in the plane_based_registration project, process the data saved in the previous step and view the normal direction of the plane. The algorithm implementation requires that the two corresponding planes in the two point cloud data to be registered have the same normal direction , If they are not the same, you need to follow the prompts for the next flip operation. After the operation is completed, the corresponding file will be generated for the next operation
+![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane3.png)  
+        (4) Save the extracted plane data in vg format, and save a copy of data in bpn format with the same file name at the same time  
+        (5) Compile the parse_VG file in the plane_based_registration project, process the data saved in the previous step and view the normal direction of the plane. The algorithm implementation requires that the two corresponding planes in the two point cloud data to be registered have the same normal direction , If they are not the same, you need to follow the prompts for the next flip operation. After the operation is completed, the corresponding file will be generated for the next operation  
         (6) Compile the registration file in the plane_based_registration project, and follow the prompts to perform the registration operation
