@@ -2,7 +2,7 @@
 ## PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap
 
 ## Instructions for use:  
-1. Download the entire code warehouse, open it in visual studio, the entry file is "PLADE.sln"
+1. Download the code, open it in visual studio, the entry file is "PLADE.sln"
 1. Dependencies:  
 -     1、[Opencv](https://opencv.org/)  
 -     2、[boost](https://www.boost.org/)  
