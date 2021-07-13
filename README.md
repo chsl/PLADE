@@ -1,5 +1,25 @@
-# PLADE
 ## PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap
+
+This repository contains implementation of the point cloud registration method described in 
+
+```bibtex
+@article{chen2019plade,
+  title={PLADE: A plane-based descriptor for point cloud registration with small overlap},
+  author={Chen, Songlin and Nan, Liangliang and Xia, Renbo and Zhao, Jibin and Wonka, Peter},
+  journal={IEEE Transactions on Geoscience and Remote Sensing},
+  volume={58},
+  number={4},
+  pages={2530--2540},
+  year={2019},
+  publisher={IEEE}
+}
+```
+
+## Dataset
+[RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
+This dataset is part of the PLADE work.
+
+If you use PLADE or the RESSO dataset in a scientific publication, please consider citing the above paper.
 
 ## Instructions for use:  
 1. Download the code, open it in visual studio, the entry file is "PLADE.sln"
@@ -27,8 +47,32 @@ The default UI will not display the extracted planes, so you need to switch the 
         (4) Save the extracted planes in vg format, and save a copy of data in bpn format with the same file name at the same time  
         (5) Compile the parse_VG file in the plane_based_registration project, and process the data saved in the previous step and view the normal direction of the plane. The algorithm implementation requires that the two corresponding planes in the two point cloud data to be registered have the same normal direction. If they are not the same, you need to follow the prompts to flip them. After the operation is completed, the corresponding file will be generated for the next operation  
         (6) Compile the registration file in the plane_based_registration project, and follow the prompts to perform the registration operation  
-# PLADE  
+        
+        
+------------------        
+        
 ##  PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap  
+
+这个代码仓库包含了以下论文实现的点云注册方法：
+
+```bibtex
+@article{chen2019plade,
+  title={PLADE: A plane-based descriptor for point cloud registration with small overlap},
+  author={Chen, Songlin and Nan, Liangliang and Xia, Renbo and Zhao, Jibin and Wonka, Peter},
+  journal={IEEE Transactions on Geoscience and Remote Sensing},
+  volume={58},
+  number={4},
+  pages={2530--2540},
+  year={2019},
+  publisher={IEEE}
+}
+```
+
+## 数据集
+[RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
+这个数据集是PLADE的一部分.
+
+如果您在研究中用到了PLADE或者RESSO数据集，请您引用我们的文章。
 
 ## 使用说明：  
 1. 下载整个代码仓，在visual studio中打开，入口文件为 "PLADE.sln"  
