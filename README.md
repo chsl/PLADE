@@ -23,6 +23,11 @@ configuring and building programs, and a set of subfolders:
 * [`code`](https://github.com/chsl/PLADE/tree/master/code) - source code of PLADE implementation.
 * [`sample_data`](https://github.com/chsl/PLADE/tree/master/sample_data) - two pairs of test point clouds.
 
+The core registration function is defined in [plade.h](./code/PLADE/plade.h).
+
+In this example, the paths to the input point clouds are hard-coded in the `main()` function in [main.cpp](https://github.com/chsl/PLADE/blob/9abacc087f2590452c592162ec1d2b2549a77271/code/PLADE/main.cpp#L48). 
+To use your data, you will need to modify these paths.
+
 ### Build PLADE
 
 PLADE depends on [boost](https://www.boost.org/). Please install [boost](https://www.boost.org/) first.
