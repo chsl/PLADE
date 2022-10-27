@@ -15,45 +15,61 @@ This repository contains implementation of the point cloud registration method d
 }
 ```
 
-## Dataset
+## Test Dataset
 [RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
 This dataset is part of the PLADE work.
 
 If you use PLADE or the RESSO dataset in a scientific publication, please consider citing the above paper.
 
-## Instructions for use:  
-1. Download the code, open it in visual studio, the entry file is "PLADE.sln"
-1. Dependencies:  
--     1、[Opencv](https://opencv.org/)
--     2、[boost](https://www.boost.org/)
--     3、[PCL](https://pointclouds.org/)  
-    Please modify "opencv2410.props", "pcl1.8.0_debug.props" and "pcl1.8.0_release.props" after updating the third-party library
-3. The project consists of two parts:
--     1、pointcloud_processing: mainly includeing some point cloud processing algorithms
--     2、plane_based_registration: code related to point cloud registration
-4. Specific instructions for use:
-    1. Download the point cloud processing software [Mapple] (https://3d.bk.tudelft.nl/liangliang/software.html) published by Professor Nan Liangliang
-    2. Use this software to preprocess point cloud data, including:  
-        (1) Downsampling, as shown in the figure below. Generally, for indoor point clouds, the point spacing is recommended to be set to 0.005-0.01mm, and for outdoor point cloud data, the point spacing is recommended to be set to 0.01-0.05mm.
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample1.png)
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample2.png)  
-        (2) If the input point data does not include normal information, you need to manually calculate the normal, and proceed as follows
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/normals.png)  
-        (3) Perform plane extraction operations
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane1.png)
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane2.png)
-The default UI will not display the extracted planes, so you need to switch the display mode as shown in the figure below. The points of the same color indicate that they belong to the same plane.
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane3.png)  
-        (4) Save the extracted planes in vg format, and save a copy of data in bpn format with the same file name at the same time  
-        (5) Compile the parse_VG file in the plane_based_registration project, and process the data saved in the previous step and view the normal direction of the plane. The algorithm implementation requires that the two corresponding planes in the two point cloud data to be registered have the same normal direction. If they are not the same, you need to follow the prompts to flip them. After the operation is completed, the corresponding file will be generated for the next operation  
-        (6) Compile the registration file in the plane_based_registration project, and follow the prompts to perform the registration operation  
-        
-        
-------------------        
-        
-##  PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap  
+### PLADE repository layout
+The repository contains a `CMakeLists.txt` file (in the root directory of the repository) that serves as an anchor for
+configuring and building programs, and a set of subfolders:
+* [`code`](https://github.com/chsl/PLADE/tree/master/code) - source code of PLADE implementation.
+* [`sample_data`](https://github.com/chsl/PLADE/tree/master/sample_data) - two pairs of test point clouds.
 
-这个代码仓库包含了以下论文实现的点云注册方法：
+### Build PLADE
+
+PLADE depends on [boost](https://www.boost.org/). Please install [boost](https://www.boost.org/) first.
+
+To build PLADE, you need [CMake](https://cmake.org/download/) (`>= 3.12`) and, of course, a compiler that supports `>= C++11`.
+
+PLADE has been tested on macOS (Xcode >= 8), Windows (MSVC >=2015 `x64`), and Linux (GCC >= 4.8, Clang >= 3.3). Machines
+nowadays typically provide higher [support](https://en.cppreference.com/w/cpp/compiler_support), so you should be able
+to build PLADE on almost all platforms.
+
+There are many options to build PLADE. Choose one of the following (not an exhaustive list):
+
+- Option 1 (purely on the command line): Use CMake to generate Makefiles and then `make` (on Linux/macOS) or `nmake`(on Windows with Microsoft
+  Visual Studio).
+    - On Linux or macOS, you can simply
+      ```
+          $ cd path-to-root-dir-of-PLADE
+          $ mkdir Release
+          $ cd Release
+          $ cmake -DCMAKE_BUILD_TYPE=Release ..
+          $ make
+      ```
+    - On Windows with Microsoft Visual Studio, use the `x64 Native Tools Command Prompt for VS XXXX` (**don't** use the x86 one), then
+      ```
+          $ cd path-to-root-dir-of-PLADE
+          $ mkdir Release
+          $ cd Release
+          $ cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+          $ nmake
+      ```
+
+- Option 2: Use any IDE that can directly handle CMakeLists files to open the `CMakeLists.txt` in the **root** directory of
+  PLADE. Then you should have obtained a usable project and just build it. I recommend using
+  [CLion](https://www.jetbrains.com/clion/) or [QtCreator](https://www.qt.io/product). For Windows users: your IDE must be set for `x64`.
+
+- Option 3: Use CMake-Gui to generate project files for your IDE. Then load the project to your IDE and build it. For Windows users: your IDE must be set for `x64`.
+
+Don't have any experience with C/C++ programming?
+Have a look at <a href="https://github.com/LiangliangNan/Easy3D/blob/main/HowToBuild.md">How to build PLADE step by
+step</a>.
+
+### Citation
+If you use PLADE in scientific work, I kindly ask you to cite it:
 
 ```bibtex
 @article{chen2019plade,
@@ -67,36 +83,6 @@ The default UI will not display the extracted planes, so you need to switch the 
   publisher={IEEE}
 }
 ```
+---------
 
-## 数据集
-[RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
-这个数据集是PLADE的一部分.
-
-如果您在研究中用到了PLADE或者RESSO数据集，请您引用我们的文章。
-
-## 使用说明：  
-1. 下载整个代码仓，在visual studio中打开，入口文件为 "PLADE.sln"  
-1. 依赖的第三方库：  
--     1、[Opencv](https://opencv.org/)  
--     2、[boost](https://www.boost.org/)  
--     3、[PCL](https://pointclouds.org/)  
-    更新第三方库后请修改 "opencv2410.props"、"pcl1.8.0_debug.props" 和 "pcl1.8.0_release.props"  
-3. 工程包括两部分：  
--     1、pointcloud_processing：主要包括一些点云处理的算法  
--     2、plane_based_registration：点云注册相关的代码  
-4. 具体使用说明：  
-    1、下载南亮亮教授公开的点云处理软件[Mapple ](https://3d.bk.tudelft.nl/liangliang/software.html)  
-    2、使用该软件对点云数据进行预处理，包括：  
-        (1) 下采样，按照如下图所示操作, 一般情况下，对于室内点云，点间距建议下采样到0.005-0.01mm，对于室外点云数据，点间距建议下采样到0.01-0.05mm
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample1.png)
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/downsample2.png)  
-        (2) 如果输入的点数据不包括法线信息，需要手动计算法线，按照如下进行操作
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/normals.png)  
-        (3) 进行平面的提取操作
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane1.png)
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane2.png)
-提取完平面之后，默认界面是不会显示的，需要按照如下图所示切换下显示模式，同一种颜色的点表示属于同一个平面
-![image](https://github.com/chsl/PLADE/blob/master/plane_based_registration/image/plane3.png)  
-        (4) 保存提取的平面数据为vg格式，并同时以相同的文件名保存一份为bpn格式的数据  
-        (5) 编译plane_based_registration 项目中的parse_VG文件，对上一步中保存的数据进行处理并查看平面的法向，算法实现中要求两个待配准的 点云数据中相对应的两个平面法向相同，如果不相同，需要按照提示进行下翻转操作，操作完成后，会生成相应的文件用于下一步操作  
-        (6) 编译plane_based_registration 项目中的registration文件，按提示进行配准操作  
+Should you have any questions, comments, or suggestions, please raise an [issue]().
