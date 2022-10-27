@@ -1,0 +1,6 @@
+target_link_libraries(pcl_convert_pcd_ascii_binary pcl_common pcl_io)
+target_link_libraries(pcl_hdl_grabber pcl_common pcl_io)
+target_link_libraries(pcl_pcd_introduce_nan pcl_common pcl_io)
+
+#libply inherited tools
+add_subdirectory(ply)
