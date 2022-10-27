@@ -25,9 +25,7 @@ configuring and building programs, and a set of subfolders:
 
 PLADE depends on [boost](https://www.boost.org/). Please install [boost](https://www.boost.org/) first.
 
-To build PLADE, you need [CMake](https://cmake.org/download/) (`>= 3.12`) and, of course, a compiler that supports `>= C++11`.
-
-PLADE has been tested on macOS (Xcode >= 8), Windows (MSVC >=2015 `x64`), and Linux (GCC >= 4.8, Clang >= 3.3). Machines
+To build PLADE, you need [CMake](https://cmake.org/download/) (`>= 3.12`) and, of course, a compiler that supports `>= C++11`. The code in this repository has been tested on macOS (Xcode >= 8), Windows (MSVC >=2015 `x64`), and Linux (GCC >= 4.8, Clang >= 3.3). Machines
 nowadays typically provide higher [support](https://en.cppreference.com/w/cpp/compiler_support), so you should be able
 to build PLADE on almost all platforms.
 
