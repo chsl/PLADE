@@ -16,18 +16,12 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 ################################################################################
 
-# Boost (required)
-find_package(Boost REQUIRED)
-
-################################################################################
-
 ### Configuration
 set(PLADE_ROOT ${CMAKE_CURRENT_LIST_DIR})
 set(PLADE_THIRD_PARTY ${PLADE_ROOT}/3rd_party)
 
 set(EIGEN_DIR ${PLADE_THIRD_PARTY}/eigen-3.4.0)
 set(PCL_DIR ${PLADE_THIRD_PARTY}/pcl-1.8.1)
-
 
 ################################################################################
 

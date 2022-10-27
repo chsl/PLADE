@@ -27,8 +27,6 @@
 #include "util.h"
 #include "plane_extraction.h"
 
-#include <boost/thread/thread.hpp>
-
 
 bool registration(Eigen::Matrix<float, 4, 4> &transformation,
                   pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud,
