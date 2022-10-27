@@ -66,6 +66,10 @@ step</a>.
 [RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
 This dataset is part of the PLADE work.
 
+**---> Attention <---** 
+
+This implementation requires that the input point clouds have oriented normals for faster convergency. Actually, this requirement can be relieved by allowing a plane (a group of 3D points) to have two opposite orientations. This way, more descriptors (consisdering both orientations of each plane) will be generated and matched. This is slow but can be very useful in practice. As for the demo purpose, the code in this repository does not implement it and thus the user should provide oriented point normals.
+
 ### Citation
 If you use PLADE or the [RESSO](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html) dataset in scientific work, I kindly ask you to cite it:
 
@@ -83,4 +87,4 @@ If you use PLADE or the [RESSO](https://3d.bk.tudelft.nl/liangliang/publications
 ```
 ---------
 
-Should you have any questions, comments, or suggestions, please raise an [issue]().
+Should you have any questions, comments, or suggestions, please raise an [issue](https://github.com/chsl/PLADE/issues).
