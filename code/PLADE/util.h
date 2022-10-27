@@ -646,6 +646,16 @@ int ComputeOverlap(typename pcl::search::KdTree<PointT>::Ptr queryTree,
     return 0;
 }
 
+/**
+ * \brief Query the average spacing of a point cloud.
+ * @param cloud The point cloud.
+ * @param k The number of nearest points used.
+ * @param accurate True to use every point to get an accurate calculation; false to obtain aa approximate
+ *                 measure, which uses only a subset (i.e., less than samples) of the points.
+ * @param samples  Use how many samples of points for the calculation.
+ * @return The average spacing of the point cloud.
+ */
+float average_spacing(const pcl::PointCloud<pcl::PointNormal>::Ptr cloud, int k = 6, bool accurate = false, int samples = 10000);
 
 void save_vg(
         const pcl::PointCloud<pcl::PointNormal> &cloud,

@@ -37,15 +37,13 @@
  * @param source_cloud The point cloud that will be transformed to align with \c target_cloud.
  * @param ransac_min_support_target The minimum point number for RANSAC plane extraction.
  * @param ransac_min_support_source The minimum point number for RANSAC plane extraction.
- * @param average_space The average space of the points (one vs. its K neighbors) in the source point cloud.
  * @return \c ture on success, otherwise \c false.
  */
 bool registration(Eigen::Matrix<float, 4, 4> &transformation,
                   pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud,
                   pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud,
                   int ransac_min_support_target = 1000,
-                  int ransac_min_support_source = 1000,
-                  float average_space = 0.001
+                  int ransac_min_support_source = 1000
 );
 
 #endif // PLADE_H

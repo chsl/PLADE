@@ -32,15 +32,16 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
                   pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud,
                   pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud,
                   int ransac_min_support_target,
-                  int ransac_min_support_source,
-                  float average_space
+                  int ransac_min_support_source
 ) {
     std::cout << "#point in target point cloud: " << target_cloud->size() << std::endl;    
     std::cout << "#point in source point cloud: " << source_cloud->size() << std::endl;
     std::cout << "parameter ransac_min_support_target: " << ransac_min_support_target << std::endl;
     std::cout << "parameter ransac_min_support_source: " << ransac_min_support_source << std::endl;
+
+    float average_space = average_spacing(source_cloud, 6);
     std::cout << "parameter average_space: " << average_space << std::endl;
-    
+
     float downSampleDistance = average_space * 4;
     float minLineConfidence = 1.0;
     int minSupportNumOfRansacLine = 50;

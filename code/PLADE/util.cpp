@@ -1566,6 +1566,39 @@ idx ...
 }
 
 
+float average_spacing(const pcl::PointCloud<pcl::PointNormal>::Ptr cloud, int k, bool accurate, int samples) {
+//    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
+//    pcl::copyPointCloud(*input_cloud, *cloud);
+    pcl::search::KdTree<pcl::PointNormal> kdtree;
+    kdtree.setInputCloud(cloud);
+
+    double total = 0.0;
+    int num = cloud->size();
+
+    int step = 1;
+    if (!accurate && num > samples)
+        step = num / samples;
+    int total_count = 0;
+    for (int i = 0; i < num; i += step) {
+        const auto &pn = cloud->at(i);
+        std::vector<int> k_indices;
+        std::vector<float> k_sqr_distances;
+        int nbs = kdtree.nearestKSearch(pn, k, k_indices, k_sqr_distances);
+        if (nbs <= 1 || nbs != k_sqr_distances.size()) {// in case we get less than k+1 neighbors
+            continue;
+        }
+
+        double avg = 0.0;
+        for (unsigned int i = 1; i < nbs; ++i) { // starts from 1 to exclude itself
+            avg += std::sqrt(k_sqr_distances[i]);
+        }
+        total += (avg / nbs);
+        ++total_count;
+    }
+
+    return static_cast<float>(total / total_count);
+}
+
 
 void print_progress(float percentage) {
     static const int width = 60;

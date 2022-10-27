@@ -41,13 +41,11 @@ int main(int argc, char **argv) {
 #if 0
     std::string targetFile = data_dir + "polyhedron_target.ply";
     std::string sourceFile = data_dir + "polyhedron_source.ply";
-    float downsample_resolution = 0.001;   // you may also need to tune this. Please try 0.1, 0.01, 0.001
     int ransac_min_support_target = 1000;  // tune this so #planes in target cloud is about in [10, 40]
     int ransac_min_support_source = 1000;  // tune this so #planes in source cloud is about in [10, 40]
 #else
     std::string targetFile = data_dir + "room_target.ply";
     std::string sourceFile = data_dir + "room_source.ply";
-    float downsample_resolution = 0.001;  // you may also need to tune this. Please try 0.1, 0.01, 0.001
     int ransac_min_support_target = 200;  // tune this so #planes in target cloud is about in [10, 40]
     int ransac_min_support_source = 4000; // tune this so #planes in source cloud is about in [10, 40]
 #endif
@@ -86,8 +84,7 @@ int main(int argc, char **argv) {
                                target_cloud,
                                source_cloud,
                                ransac_min_support_target,
-                               ransac_min_support_source,
-                               downsample_resolution);
+                               ransac_min_support_source);
     if (!status) {
         std::cerr << "registration failed";
         return EXIT_FAILURE;
