@@ -33,22 +33,22 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
                   pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud,
                   int ransac_min_support_target,
                   int ransac_min_support_source,
-                  float downsample_resolution
+                  float average_space
 ) {
     std::cout << "#point in target point cloud: " << target_cloud->size() << std::endl;    
     std::cout << "#point in source point cloud: " << source_cloud->size() << std::endl;
     std::cout << "parameter ransac_min_support_target: " << ransac_min_support_target << std::endl;
     std::cout << "parameter ransac_min_support_source: " << ransac_min_support_source << std::endl;
-    std::cout << "parameter downsample_resolution: " << downsample_resolution << std::endl;
+    std::cout << "parameter average_space: " << average_space << std::endl;
     
-    float downSampleDistance = downsample_resolution * 4;
+    float downSampleDistance = average_space * 4;
     float minLineConfidence = 1.0;
     int minSupportNumOfRansacLine = 50;
-    float lengthThreshold = downsample_resolution * 5;
+    float lengthThreshold = average_space * 5;
     float angleThreshold = 5.0 / 180 * M_PI;
     float cosAngleThreshold = cos(angleThreshold);
     float faceMatchesWeight = 0.2;
-    float inlierDistanceOfFittingLine = downsample_resolution * 2;
+    float inlierDistanceOfFittingLine = average_space * 2;
     int maxCandidateResultNum = 200;
     int maxKdtreeNeighbor = 0;
     float scale = lengthThreshold / cos(M_PI_2 - angleThreshold);
