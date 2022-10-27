@@ -1,4 +1,4 @@
-## PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap
+### PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap
 
 This repository contains implementation of the point cloud registration method described in 
 
@@ -63,7 +63,7 @@ Have a look at <a href="https://github.com/LiangliangNan/Easy3D/blob/main/HowToB
 step</a>.
 
 
-## Test Dataset
+### Test Dataset
 
 [RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
 This dataset is part of the PLADE work.
