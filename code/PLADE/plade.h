@@ -37,7 +37,7 @@
  * @param source_cloud The point cloud that will be transformed to align with \c target_cloud.
  * @param ransac_min_support_target The minimum point number for RANSAC plane extraction.
  * @param ransac_min_support_source The minimum point number for RANSAC plane extraction.
- * @param downsample_resolution Used for downsampling the point clouds.
+ * @param average_space The average space of the point in the source point cloud.
  * @return \c ture on success, otherwise \c false.
  */
 bool registration(Eigen::Matrix<float, 4, 4> &transformation,
