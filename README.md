@@ -15,12 +15,6 @@ This repository contains implementation of the point cloud registration method d
 }
 ```
 
-## Test Dataset
-[RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
-This dataset is part of the PLADE work.
-
-If you use PLADE or the RESSO dataset in a scientific publication, please consider citing the above paper.
-
 ### PLADE repository layout
 The repository contains a `CMakeLists.txt` file (in the root directory of the repository) that serves as an anchor for
 configuring and building programs, and a set of subfolders:
@@ -68,8 +62,14 @@ Don't have any experience with C/C++ programming?
 Have a look at <a href="https://github.com/LiangliangNan/Easy3D/blob/main/HowToBuild.md">How to build PLADE step by
 step</a>.
 
+
+## Test Dataset
+
+[RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
+This dataset is part of the PLADE work.
+
 ### Citation
-If you use PLADE in scientific work, I kindly ask you to cite it:
+If you use PLADE or the [RESSO](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html) dataset in scientific work, I kindly ask you to cite it:
 
 ```bibtex
 @article{chen2019plade,
