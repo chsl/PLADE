@@ -236,7 +236,7 @@ endif()
 
 
 if (MSVC)
-    target_compile_definitions(3rd_ransac PRIVATE
+    target_compile_definitions(ransac PRIVATE
         _CRT_SECURE_NO_WARNINGS
         _CRT_SECURE_NO_DEPRECATE
         )
