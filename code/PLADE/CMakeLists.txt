@@ -46,7 +46,7 @@ target_compile_definitions(
 		"PLADE_CODE_DIR=\"${PLADE_ROOT}\""
 )
 
-target_link_libraries( ${PROJECT_NAME} ann ransac opencv_core zlib opencv_imgproc pcl_common pcl_io pcl_features pcl_kdtree pcl_filters)
+target_link_libraries( ${PROJECT_NAME} ann ransac opencv_core zlib opencv_imgproc pcl_common pcl_io pcl_kdtree pcl_filters)
 
 # request Easy3D
 find_package(Easy3D QUIET)
