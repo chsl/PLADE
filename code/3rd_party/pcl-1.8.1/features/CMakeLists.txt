@@ -1,6 +1,6 @@
 set(SUBSYS_NAME features)
 set(SUBSYS_DESC "Point cloud features library")
-set(SUBSYS_DEPS common search kdtree octree filters 2d)
+set(SUBSYS_DEPS common search kdtree)
 
 set(build TRUE)
 PCL_SUBSYS_OPTION(build "${SUBSYS_NAME}" "${SUBSYS_DESC}" ON)
@@ -25,7 +25,6 @@ if(build)
         "include/pcl/${SUBSYS_NAME}/fpfh.h"
         "include/pcl/${SUBSYS_NAME}/fpfh_omp.h"
         "include/pcl/${SUBSYS_NAME}/from_meshes.h"
-        "include/pcl/${SUBSYS_NAME}/gfpfh.h"
         "include/pcl/${SUBSYS_NAME}/integral_image2D.h"
         "include/pcl/${SUBSYS_NAME}/integral_image_normal.h"
         "include/pcl/${SUBSYS_NAME}/intensity_gradient.h"
@@ -75,7 +74,6 @@ if(build)
         "include/pcl/${SUBSYS_NAME}/impl/feature.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/fpfh.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/fpfh_omp.hpp"
-        "include/pcl/${SUBSYS_NAME}/impl/gfpfh.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/integral_image2D.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/integral_image_normal.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/intensity_gradient.hpp"
@@ -88,7 +86,6 @@ if(build)
         "include/pcl/${SUBSYS_NAME}/impl/normal_3d.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/normal_3d_omp.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/normal_based_signature.hpp"
-        "include/pcl/${SUBSYS_NAME}/impl/organized_edge_detection.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/pfh.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/pfhrgb.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/ppf.hpp"
@@ -122,7 +119,6 @@ if(build)
         src/crh.cpp
         src/don.cpp
         src/fpfh.cpp
-        src/gfpfh.cpp
         src/integral_image_normal.cpp
         src/intensity_gradient.cpp
         src/intensity_spin.cpp
@@ -133,7 +129,6 @@ if(build)
         src/narf.cpp
         src/normal_3d.cpp
         src/normal_based_signature.cpp
-        src/organized_edge_detection.cpp
         src/pfh.cpp
         src/ppf.cpp
         src/shot.cpp
@@ -143,7 +138,6 @@ if(build)
         src/rift.cpp
         src/rops_estimation.cpp
         src/rsd.cpp
-        src/grsd.cpp
         src/statistical_multiscale_interest_region_extraction.cpp
         src/vfh.cpp
         src/esf.cpp        
@@ -161,13 +155,14 @@ if(build)
 	
     set(LIB_NAME "pcl_${SUBSYS_NAME}")
     PCL_ADD_LIBRARY("${LIB_NAME}" "${SUBSYS_NAME}" ${srcs} ${incs} ${impl_incs})
-    target_link_libraries("${LIB_NAME}" pcl_common pcl_search pcl_kdtree pcl_octree pcl_filters)
+    target_link_libraries("${LIB_NAME}" pcl_common pcl_search pcl_kdtree)
     PCL_MAKE_PKGCONFIG("${LIB_NAME}" "${SUBSYS_NAME}" "${SUBSYS_DESC}" "${SUBSYS_DEPS}" "" "" "" "")
     # Install headers
     PCL_ADD_INCLUDES("${SUBSYS_NAME}" "${SUBSYS_NAME}" ${incs})
     PCL_ADD_INCLUDES("${SUBSYS_NAME}" "${SUBSYS_NAME}/impl" ${impl_incs})
 
-	target_include_directories(${LIB_NAME} PRIVATE ${PLADE_THIRD_PARTY})
+    target_include_directories(${LIB_NAME} PRIVATE ${PLADE_THIRD_PARTY})
+    target_include_directories(${LIB_NAME} PRIVATE ${PLADE_THIRD_PARTY}/pcl-1.8.1/filters/include)
 	set_target_properties(${LIB_NAME} PROPERTIES FOLDER "3rd_party")
 
 endif(build)

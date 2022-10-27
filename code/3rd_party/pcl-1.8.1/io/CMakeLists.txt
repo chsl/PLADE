@@ -1,6 +1,6 @@
 set(SUBSYS_NAME io)
 set(SUBSYS_DESC "Point cloud IO library")
-set(SUBSYS_DEPS common octree)
+set(SUBSYS_DEPS common)
 
 set(build TRUE)
 PCL_SUBSYS_OPTION(build "${SUBSYS_NAME}" "${SUBSYS_DESC}" ON)
@@ -208,7 +208,6 @@ if(build)
         src/vtk_io.cpp
         src/ply_io.cpp
         src/ascii_io.cpp
-        src/compression.cpp
         src/lzf.cpp
         src/lzf_image_io.cpp
         src/obj_io.cpp
@@ -282,7 +281,6 @@ if(build)
         )
 
     set(compression_incs
-        include/pcl/compression/octree_pointcloud_compression.h
         include/pcl/compression/color_coding.h
         include/pcl/compression/compression_profiles.h
         include/pcl/compression/entropy_range_coder.h
@@ -308,7 +306,6 @@ if(build)
         "include/pcl/${SUBSYS_NAME}/impl/synchronized_queue.hpp"
         "include/pcl/${SUBSYS_NAME}/impl/point_cloud_image_extractors.hpp"
         include/pcl/compression/impl/entropy_range_coder.hpp
-        include/pcl/compression/impl/octree_pointcloud_compression.hpp
         ${VTK_IO_INCLUDES_IMPL}
        )
     if(PNG_FOUND AND (WITH_OPENNI OR WITH_OPENNI2))

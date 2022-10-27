@@ -1,6 +1,6 @@
 set(SUBSYS_NAME registration)
 set(SUBSYS_DESC "Point cloud registration library")
-set(SUBSYS_DEPS common octree kdtree search sample_consensus features filters)
+set(SUBSYS_DEPS common kdtree search features)
 
 set(build TRUE)
 PCL_SUBSYS_OPTION(build "${SUBSYS_NAME}" "${SUBSYS_DESC}" ON)

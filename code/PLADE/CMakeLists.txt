@@ -27,11 +27,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 		${PCL_DIR}/features/include
 		${PCL_DIR}/search/include
 		${PCL_DIR}/kdtree/include
-		${PCL_DIR}/octree/include
-		${PCL_DIR}/registration/include
-		${PCL_DIR}/sample_consensus/include
 		${PCL_DIR}/filters/include
-		${PCL_DIR}/keypoints/include
 		${PCL_DIR}/registration/include
 		${PCL_DIR}/segmentation/include
 		${PLADE_THIRD_PARTY}/ann_1.1.2/include
@@ -50,7 +46,7 @@ target_compile_definitions(
 		"PLADE_CODE_DIR=\"${PLADE_ROOT}\""
 )
 
-target_link_libraries( ${PROJECT_NAME} ann ransac opencv_core zlib opencv_imgproc pcl_common pcl_io pcl_features pcl_kdtree pcl_segmentation)
+target_link_libraries( ${PROJECT_NAME} ann ransac opencv_core zlib opencv_imgproc pcl_common pcl_io pcl_features pcl_kdtree pcl_filters)
 
 # request Easy3D
 find_package(Easy3D QUIET)
