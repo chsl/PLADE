@@ -1,5 +1,4 @@
 add_subdirectory(pcl-1.8.1)
-add_subdirectory(zlib)
 add_subdirectory(opencv)
 add_subdirectory(ann_1.1.2)
 add_subdirectory(ransac)

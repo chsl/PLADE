@@ -4,12 +4,10 @@ get_filename_component(PROJECT_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 project(${PROJECT_NAME})
 
 find_package(Boost COMPONENTS thread REQUIRED)
-if(Boost_FOUND)
-    message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
-    message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
-    #message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")    
-    link_directories(${Boost_LIBRARY_DIRS})
-endif()
+message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
+message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
+#message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")    
+link_directories(${Boost_LIBRARY_DIRS})
 
 
 # request Easy3D
@@ -59,7 +57,7 @@ target_compile_definitions(
 )
 
 
-target_link_libraries( ${PROJECT_NAME} ann ransac opencv_core zlib opencv_imgproc pcl_common pcl_io pcl_kdtree pcl_filters)
+target_link_libraries( ${PROJECT_NAME} ann ransac opencv_core opencv_imgproc pcl_common pcl_io pcl_kdtree pcl_filters)
 target_link_libraries( ${PROJECT_NAME} Boost::thread)
 
 if (Easy3D_FOUND)
