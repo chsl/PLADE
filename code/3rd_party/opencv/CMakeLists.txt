@@ -228,8 +228,8 @@ OCV_OPTION(ENABLE_NEON                "Enable NEON instructions"                
 OCV_OPTION(ENABLE_VFPV3               "Enable VFPv3-D32 instructions"                            AARCH64 IF CMAKE_COMPILER_IS_GNUCXX AND (ARM OR AARCH64))
 OCV_OPTION(ENABLE_NOISY_WARNINGS      "Show all warnings even if they are too noisy"             OFF )
 OCV_OPTION(OPENCV_WARNINGS_ARE_ERRORS "Treat warnings as errors"                                 OFF )
-OCV_OPTION(ENABLE_WINRT_MODE          "Build with Windows Runtime support"                       OFF  IF WIN32 )
-OCV_OPTION(ENABLE_WINRT_MODE_NATIVE   "Build with Windows Runtime native C++ support"            OFF  IF WIN32 )
+OCV_OPTION(ENABLE_WINRT_MODE          "Build with Windows Runtime support"                       ON  IF WIN32 )
+OCV_OPTION(ENABLE_WINRT_MODE_NATIVE   "Build with Windows Runtime native C++ support"            ON  IF WIN32 )
 OCV_OPTION(ENABLE_LIBVS2013           "Build VS2013 with Visual Studio 2013 libraries"           OFF  IF WIN32 AND (MSVC_VERSION EQUAL 1800) )
 OCV_OPTION(ENABLE_WINSDK81            "Build VS2013 with Windows 8.1 SDK"                        OFF  IF WIN32 AND (MSVC_VERSION EQUAL 1800) )
 OCV_OPTION(ENABLE_WINPHONESDK80       "Build with Windows Phone 8.0 SDK"                         OFF  IF WIN32 AND (MSVC_VERSION EQUAL 1700) )
@@ -348,8 +348,8 @@ endif()
 
 if(WIN32)
   # Postfix of DLLs:
-  set(OPENCV_DLLVERSION "${OPENCV_VERSION_MAJOR}${OPENCV_VERSION_MINOR}${OPENCV_VERSION_PATCH}")
-  set(OPENCV_DEBUG_POSTFIX d)
+  set(OPENCV_DLLVERSION "")
+  set(OPENCV_DEBUG_POSTFIX "")
 else()
   # Postfix of so's:
   set(OPENCV_DLLVERSION "")
@@ -424,13 +424,13 @@ include(cmake/OpenCVCompilerOptions.cmake)
 # Use statically or dynamically linked CRT?
 # Default: dynamic
 # ----------------------------------------------------------------------------
-if(MSVC)
-  include(cmake/OpenCVCRTLinkage.cmake)
-endif(MSVC)
+#if(MSVC)
+#  include(cmake/OpenCVCRTLinkage.cmake)
+#endif(MSVC)
 
-if(WIN32 AND NOT MINGW)
-  add_definitions(-D_VARIADIC_MAX=10)
-endif(WIN32 AND NOT MINGW)
+#if(WIN32 AND NOT MINGW)
+#  add_definitions(-D_VARIADIC_MAX=10)
+#endif(WIN32 AND NOT MINGW)
 
 
 # ----------------------------------------------------------------------------
@@ -571,39 +571,6 @@ include(cmake/OpenCVGenHeaders.cmake)
 
 # Generate Info.plist for the IOS framework
 #include(cmake/OpenCVGenInfoPlist.cmake)
-
-# Generate environment setup file
-if(INSTALL_TESTS AND OPENCV_TEST_DATA_PATH)
-  if(ANDROID)
-    get_filename_component(TEST_PATH ${OPENCV_TEST_INSTALL_PATH} DIRECTORY)
-    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/templates/opencv_run_all_tests_android.sh.in"
-                   "${CMAKE_BINARY_DIR}/unix-install/opencv_run_all_tests.sh" @ONLY)
-    install(PROGRAMS "${CMAKE_BINARY_DIR}/unix-install/opencv_run_all_tests.sh"
-            DESTINATION . COMPONENT tests)
-  elseif(WIN32 OR UNIX)
-    set(OPENCV_PYTHON_TESTS_LIST "")
-    if(BUILD_opencv_python)
-      file(GLOB py_tests modules/python/test/*.py)
-      install(PROGRAMS ${py_tests} DESTINATION ${OPENCV_TEST_INSTALL_PATH} COMPONENT tests)
-      if(BUILD_opencv_nonfree)
-        file(GLOB py_nonfree_tests modules/python/test/nonfree_tests/*.py)
-        install(PROGRAMS ${py_nonfree_tests} DESTINATION ${OPENCV_TEST_INSTALL_PATH}/nonfree_tests COMPONENT tests)
-      endif()
-      set(OPENCV_PYTHON_TESTS_LIST "test.py")
-    endif()
-    if(WIN32)
-        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/templates/opencv_run_all_tests_windows.cmd.in"
-                       "${CMAKE_BINARY_DIR}/win-install/opencv_run_all_tests.cmd" @ONLY)
-        install(PROGRAMS "${CMAKE_BINARY_DIR}/win-install/opencv_run_all_tests.cmd"
-                DESTINATION ${OPENCV_TEST_INSTALL_PATH} COMPONENT tests)
-    else()
-        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/templates/opencv_run_all_tests_unix.sh.in"
-                       "${CMAKE_BINARY_DIR}/unix-install/opencv_run_all_tests.sh" @ONLY)
-        install(PROGRAMS "${CMAKE_BINARY_DIR}/unix-install/opencv_run_all_tests.sh"
-                DESTINATION ${OPENCV_TEST_INSTALL_PATH} COMPONENT tests)
-    endif()
-  endif()
-endif()
 
 if(NOT OPENCV_README_FILE)
   if(ANDROID)

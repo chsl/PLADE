@@ -38,12 +38,12 @@
 #ifndef PCL_COMMON_H_
 #define PCL_COMMON_H_
 
-#if defined _MSC_VER
+#if defined _MSC_VER || defined WIN32 || defined _WIN32
  // 4244 : conversion from 'type1' to 'type2', possible loss of data
  // 4661 : no suitable definition provided for explicit template instantiation reques
  // 4503 : decorated name length exceeded, name was truncated
  // 4146 : unary minus operator applied to unsigned type, result still unsigned
-#pragma warning (disable:  4018 4244 4267 4521 4251 4661 4305 4503 4146 4723 4800 4996)
+#pragma warning (disable:  4018 4244 4267 4521 4251 4273 4661 4305 4316 4477 4503 4146 4723 4800 4996)
 #endif
 
 #include <pcl/pcl_base.h>

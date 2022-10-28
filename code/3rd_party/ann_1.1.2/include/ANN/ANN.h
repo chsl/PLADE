@@ -74,9 +74,9 @@
   // this macro as being exported.
   //----------------------------------------------------------------------
   #ifdef DLL_EXPORTS
-	 #define DLL_API __declspec(dllexport)
+	 #define DLL_API //__declspec(dllexport)
   #else
-	#define DLL_API __declspec(dllimport)
+	#define DLL_API //__declspec(dllimport)
   #endif
   //----------------------------------------------------------------------
   // DLL_API is ignored for all other systems

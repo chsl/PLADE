@@ -3,8 +3,11 @@ cmake_minimum_required(VERSION 3.12)
 get_filename_component(PROJECT_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 project(${PROJECT_NAME})
 
-find_package(Boost REQUIRED)
+find_package( Boost COMPONENTS thread)
 message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
+message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
+link_directories(${Boost_LIBRARY_DIRS})
+
 
 add_executable(${PROJECT_NAME}
 		plade.h
@@ -46,7 +49,9 @@ target_compile_definitions(
 		"PLADE_CODE_DIR=\"${PLADE_ROOT}\""
 )
 
+
 target_link_libraries( ${PROJECT_NAME} ann ransac opencv_core zlib opencv_imgproc pcl_common pcl_io pcl_kdtree pcl_filters)
+target_link_libraries( ${PROJECT_NAME} Boost::thread)
 
 # request Easy3D
 find_package(Easy3D QUIET)

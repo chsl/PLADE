@@ -23,8 +23,8 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "plade.h"
 #include "util.h"
+#include "plade.h"
 #include "plane_extraction.h"
 
 
@@ -132,7 +132,7 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
     }
 
     // compute intersection lines
-    int mainPlanesNum = mainPlanes.size();
+	size_t mainPlanesNum = mainPlanes.size();
     std::vector<INTERSECTION_LINE> mainIntersectionLines;
     mainIntersectionLines.reserve(mainPlanesNum * mainPlanesNum / 2);
     pcl::search::KdTree<pcl::PointXYZ>::Ptr downsampleKdtree(new pcl::search::KdTree<pcl::PointXYZ>);
@@ -171,8 +171,8 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
             if (MIN(tempIntersect.confidence[0], tempIntersect.confidence[1]) < minLineConfidence) {
                 //continue;
             }
-            tempIntersect.supportPlanes.push_back(i);
-            tempIntersect.supportPlanes.push_back(j);
+            tempIntersect.supportPlanes.push_back(static_cast<int>(i));
+            tempIntersect.supportPlanes.push_back(static_cast<int>(j));
             if (0 != ComputeAngleOfTwo3DVector(mainPlanes[i], mainPlanes[j], tempIntersect.planeAngle)) {
                 //continue;
             }
@@ -191,7 +191,7 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
     for (size_t i = 0; i < target_planes.size(); i++) {
         const std::vector<int> &current = target_planes[i];
         for (size_t j = 0; j < target_planes[i].size(); j++) {
-            pointToPlaneIndex[current[j]] = i;
+            pointToPlaneIndex[current[j]] = static_cast<int>(i);
         }
     }
     std::vector<std::vector<int>> boundaryPointsOfEachPlane(target_planes.size());
@@ -236,7 +236,7 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
             boundaIntersectionLine.lineVec = (projectStartEnd[1] - projectStartEnd[0]);
             boundaIntersectionLine.lineVec.normalize();
             boundaIntersectionLine.linePoint = projectStartEnd[0];
-            boundaIntersectionLine.supportPlanes.push_back(i);
+            boundaIntersectionLine.supportPlanes.push_back(static_cast<int>(i));
             boundaIntersectionLine.isIntersectionLine = false;
             mainBoundaryIntersectionLines.push_back(boundaIntersectionLine);
         }
@@ -381,8 +381,8 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
             if (MIN(tempIntersect.confidence[0], tempIntersect.confidence[1]) < minLineConfidence) {
                 //continue;
             }
-            tempIntersect.supportPlanes.push_back(i);
-            tempIntersect.supportPlanes.push_back(j);
+            tempIntersect.supportPlanes.push_back(static_cast<int>(i));
+            tempIntersect.supportPlanes.push_back(static_cast<int>(j));
             if (0 != ComputeAngleOfTwo3DVector(sourcePlanes[i], sourcePlanes[j], tempIntersect.planeAngle)) {
                 //continue;
             }
@@ -398,7 +398,7 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
     for (size_t i = 0; i < source_planes.size(); i++) {
         const std::vector<int> &current = source_planes[i];
         for (size_t j = 0; j < source_planes[i].size(); j++) {
-            sourcePointToPlaneIndex[current[j]] = i;
+            sourcePointToPlaneIndex[current[j]] = static_cast<int>(i);
         }
     }
     std::vector<std::vector<int>> currentBoundaryPointsOfEachPlane(source_planes.size());
@@ -442,7 +442,7 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
             boundaIntersectionLine.lineVec = (projectStartEnd[1] - projectStartEnd[0]);
             boundaIntersectionLine.lineVec.normalize();
             boundaIntersectionLine.linePoint = projectStartEnd[0];
-            boundaIntersectionLine.supportPlanes.push_back(i);
+            boundaIntersectionLine.supportPlanes.push_back(static_cast<int>(i));
             boundaIntersectionLine.isIntersectionLine = false;
             currentBoundaryIntersectionLines.push_back(boundaIntersectionLine);
         }

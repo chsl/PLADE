@@ -104,8 +104,8 @@ void MatchingLines(MatchInformation current,
     pMatchedResult.clear();
     pMatchedResult.reserve(200);
 
-	int currentPlanesNum = planes.size();
-	int mainPlanesNum = mainPlanes.size();
+	size_t currentPlanesNum = planes.size();
+	size_t mainPlanesNum = mainPlanes.size();
 
 	//Parameter
 	float lengthThreshold = parameter.lengthThreshold;
@@ -138,8 +138,8 @@ void MatchingLines(MatchInformation current,
 		PAIRLINE pairLine;
 		pairLine.linePoints1 = currentLineLength[i][j].points1;
 		pairLine.linePoints2 = currentLineLength[i][j].points2;
-		pairLine.originalIndex1 = i;
-		pairLine.originalIndex2 = j;
+		pairLine.originalIndex1 = static_cast<int>(i);
+		pairLine.originalIndex2 = static_cast<int>(j);
 		std::vector<int> neighbor;
 		std::vector<float> neighborDistance;
 		if (line1.isIntersectionLine)
@@ -330,7 +330,7 @@ void MatchingLines(MatchInformation current,
 	int clusterNumOfGreaterThan1 = 0;
 	for (size_t i = 0; i < sortVec.size(); i++)
 	{
-		sortVec[i].index = i;
+		sortVec[i].index = static_cast<int>(i);
 		sortVec[i].length = cluster[i].indices.size();
 		if (sortVec[i].length > 1)
 		{
@@ -418,7 +418,7 @@ void MatchingLines(MatchInformation current,
 			{
 				if (i == matches[j].size())
 				{
-					tempMatchs.push_back(j);
+					tempMatchs.push_back(static_cast<int>(j));
 					matchedCount++;
 				}
 			}
@@ -684,9 +684,9 @@ int Fit3DLine(std::vector<cv::Point3f> &points, cv::Vec6f &param, float *pAccura
     if (pAccuracy)//�����Ҫ������Ͼ���
     {
         //����㵽ֱ�ߵľ���
-        int pointsNum = points.size();
+        size_t pointsNum = points.size();
         double sum = 0;
-        for (int i = 0; i < pointsNum; i++) {
+        for (size_t i = 0; i < pointsNum; i++) {
             sum += computeLengthOfPoint23DLine(param, points[i]);
         }
         *pAccuracy = float(sum / pointsNum);
@@ -799,8 +799,8 @@ int ConstructPairLinesKdTree(std::vector<INTERSECTION_LINE> &lines,
             PAIRLINE pairLine;
             pairLine.linePoints1 = lineLength[i][j].points1;
             pairLine.linePoints2 = lineLength[i][j].points2;
-            pairLine.originalIndex1 = i;
-            pairLine.originalIndex2 = j;
+            pairLine.originalIndex1 = static_cast<int>(i);
+            pairLine.originalIndex2 = static_cast<int>(j);
             //construct kdTree
             if (line1.isIntersectionLine) {
                 if (line2.isIntersectionLine)//22
@@ -1267,7 +1267,7 @@ int ClusterTransformation(std::vector<Eigen::Matrix3f> &Rs,
     g_angleThreshold = angleThreshold;
     // Size constraints for the clusters:
     cec.setMinClusterSize(1);
-    cec.setMaxClusterSize(transNum);
+    cec.setMaxClusterSize(static_cast<int>(transNum));
     // The resulting clusters (an array of pointindices):
     cec.segment(clusters);
     return 0;
@@ -1358,7 +1358,7 @@ int AreTwoPlanesPenetrable(Eigen::Vector4f &plane1, Eigen::Vector4f &plane2,
     std::vector<LENGTHINDEX> lengthVector(interPoints.size());
     for (size_t i = 0; i < interPoints.size(); i++) {
         lengthVector[i].length = (interPoints[i] - interPoints[0]).dot(direc);
-        lengthVector[i].index = i;
+        lengthVector[i].index = static_cast<int>(i);
     }
     sort(lengthVector.begin(), lengthVector.end(), myCompareLess);// ��С��������
     if (0 == (lengthVector[0].index / 2 - lengthVector[1].index / 2)) {
@@ -1567,19 +1567,17 @@ idx ...
 
 
 float average_spacing(const pcl::PointCloud<pcl::PointNormal>::Ptr cloud, int k, bool accurate, int samples) {
-//    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
-//    pcl::copyPointCloud(*input_cloud, *cloud);
     pcl::search::KdTree<pcl::PointNormal> kdtree;
     kdtree.setInputCloud(cloud);
 
     double total = 0.0;
-    int num = cloud->size();
+    size_t num = cloud->size();
 
-    int step = 1;
+    size_t step = 1;
     if (!accurate && num > samples)
         step = num / samples;
-    int total_count = 0;
-    for (int i = 0; i < num; i += step) {
+    size_t total_count = 0;
+    for (size_t i = 0; i < num; i += step) {
         const auto &pn = cloud->at(i);
         std::vector<int> k_indices;
         std::vector<float> k_sqr_distances;
