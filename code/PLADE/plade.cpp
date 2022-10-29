@@ -284,7 +284,6 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
         }
     }
 
-    //fout<<sourceFileName+".bpn"<<std::endl;
     size_t currentPlanesNum = sourcePlanes.size();
 
     //compute the bounding box
@@ -603,7 +602,7 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
 std::vector<PLANE> extract(pcl::PointCloud<pcl::PointNormal>::Ptr cloud, int init_min_support = 10000) {
     const int min_num = 10;
     const int max_num = 40;
-    const int min_allowed_support = 50; // a plane much have >= this number points
+    const int min_allowed_support = 200; // a plane much have >= this number points
 
     std::vector<PLANE> planes = PlaneExtraction::detect(*cloud, init_min_support, 0.005f, 0.02f, 0.8f, 0.001f);
     if (planes.size() >= min_num && planes.size() <=max_num)
@@ -620,7 +619,7 @@ std::vector<PLANE> extract(pcl::PointCloud<pcl::PointNormal>::Ptr cloud, int ini
         return result;
     }
 
-    const int max_trials = 5; // max call RANSAC 5 times
+    const int max_trials = 10; // max call RANSAC max_trials times
     int min_support = init_min_support / 2;
     int trials = 1;
     while (planes.size() < min_num && trials < max_trials && min_support >= min_allowed_support) {
@@ -660,4 +659,52 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
     std::cout << "run time for plane extraction: " << w.time_string() << std::endl;
 
     return registration(transformation, target_cloud, source_cloud, target_planes, source_planes);
+}
+
+
+#include <pcl/io/ply_io.h>
+
+bool registration(Eigen::Matrix<float, 4, 4> &transformation,
+                  const std::string& target_cloud_file,
+                  const std::string& source_cloud_file
+) {
+    std::cout << "target file: " << target_cloud_file << std::endl;
+    std::cout << "source file: " << source_cloud_file << std::endl;
+    if (extension(target_cloud_file) != "ply" || extension(source_cloud_file) != "ply") {
+        std::cerr << "only PLY format is accepted" << std::endl;
+        return false;
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+
+    pcl::PLYReader reader;
+    pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud(new pcl::PointCloud<pcl::PointNormal>);
+    if (reader.read(target_cloud_file, *target_cloud) != 0) {
+        std::cerr << "loading target point cloud failed" << std::endl;
+        return false;
+    }
+    pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud(new pcl::PointCloud<pcl::PointNormal>);
+    if (reader.read(source_cloud_file, *source_cloud) != 0) {
+        std::cerr << "loading source point cloud failed" << std::endl;
+        return false;
+    }
+
+    bool switched = false;
+    if (source_cloud->size() >= target_cloud->size() * 1.2f) {
+        std::swap(target_cloud, source_cloud);
+        switched = true;
+        std::cout << "---->>> ATTENTION: target and source have been switched for efficiency <<<----" << std::endl;
+    }
+
+    transformation.setIdentity();
+    bool status = registration(transformation, target_cloud, source_cloud);
+    if (!status) {
+        std::cerr << "registration failed" << std::endl;
+        return false;
+    }
+
+    if (switched)
+        transformation = transformation.inverse();
+
+    return true;
 }

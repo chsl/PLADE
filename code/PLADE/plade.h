@@ -35,6 +35,19 @@
 
 /**
  * Implementation of the PLADE registration method.
+ * This method takes the file names of two points and outputs the registration transformation.
+ * @param transformation On success \c transformation returns the registration transformation.
+ * @param target_cloud_file The file name of the reference point cloud.
+ * @param source_cloud_file The file name of the source point cloud that will be transformed to align with the reference point cloud.
+ * @return \c ture on success, otherwise \c false.
+ */
+bool registration(Eigen::Matrix<float, 4, 4> &transformation,
+                  const std::string& target_cloud_file,
+                  const std::string& source_cloud_file
+);
+
+/**
+ * Implementation of the PLADE registration method.
  * This method automatically tunes the RANSAC parameters such that at least 10 and at most 40 planes will be extracted
  * and used for registration.
  * @param transformation On success \c transformation returns the registration transformation.

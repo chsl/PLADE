@@ -127,6 +127,9 @@ void MatchingLines(MatchInformation current,
 	std::vector<std::vector<float>> matchedLinesDistance;
 	matchedLinesDistance.reserve(linesTobeMatched.size() * 4);
 	int totalQueryDescriptors = 0;
+
+    std::cout << "generating descriptors with lines..." << std::endl;
+    StopWatch w;
 	for (size_t k = 0; k < linesTobeMatched.size(); k++)
 	{
 		size_t i = linesTobeMatched[k].first;
@@ -285,7 +288,10 @@ void MatchingLines(MatchInformation current,
 			}
 
 		}
+
+        print_progress(float(k+1)/linesTobeMatched.size());
 	}
+    std::cout << std::endl << "done. time: " << w.time_string() << std::endl;
 
 	//cout<<"totalQueryDescriptors:"<<totalQueryDescriptors<<endl;
 
@@ -439,7 +445,7 @@ void MatchingLines(MatchInformation current,
 	}
 
     std::cout << "matching lines..." << std::endl;
-    StopWatch w;
+    w.start();
 	int count = 0;
 	for (size_t m = 0; m < matchedPlanes.size(); m++)
 	{
