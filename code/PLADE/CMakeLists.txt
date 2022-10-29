@@ -9,13 +9,6 @@ message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
 #message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")    
 link_directories(${Boost_LIBRARY_DIRS})
 
-
-# request Easy3D
-find_package(Easy3D QUIET)
-if (Easy3D_FOUND)
-    message(STATUS "Found Easy3D v${Easy3D_VERSION}")
-endif ()
-
 add_executable(${PROJECT_NAME}
 		plade.h
 		plade.cpp
@@ -23,6 +16,8 @@ add_executable(${PROJECT_NAME}
 		util.cpp
 		plane_extraction.h
 		plane_extraction.cpp
+		ply_reader.h
+		ply_reader.cpp
 		main.cpp
 		)
 
@@ -42,6 +37,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 		${PCL_DIR}/segmentation/include
 		${PLADE_THIRD_PARTY}/ann_1.1.2/include
 		${PLADE_THIRD_PARTY}/ransac
+		${PLADE_THIRD_PARTY}/rply
 		${PLADE_THIRD_PARTY}/opencv/include
 		${PLADE_THIRD_PARTY}/opencv/modules/core/include
 		${PLADE_THIRD_PARTY}/opencv/modules/imgproc/include
@@ -57,12 +53,5 @@ target_compile_definitions(
 )
 
 
-target_link_libraries( ${PROJECT_NAME} ann ransac opencv_core opencv_imgproc pcl_common pcl_io pcl_kdtree pcl_filters)
+target_link_libraries( ${PROJECT_NAME} ann ransac rply opencv_core opencv_imgproc pcl_common pcl_kdtree pcl_filters)
 target_link_libraries( ${PROJECT_NAME} Boost::thread)
-
-if (Easy3D_FOUND)
-	target_compile_definitions(${PROJECT_NAME} PRIVATE HAS_EASY3D)
-	target_link_libraries( ${PROJECT_NAME} easy3d::viewer)
-else ()
-	message(WARNING "Easy3D not found and thus the visualization of the result is disabled")
-endif ()

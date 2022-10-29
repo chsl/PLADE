@@ -1499,6 +1499,53 @@ int ComputeIntersectionPointOf23DLine(Eigen::Vector3f &lineVec1, Eigen::Vector3f
 
 }
 
+
+#include "ply_reader.h"
+
+bool load_ply_cloud(const std::string& file_name, pcl::PointCloud<pcl::PointNormal>& cloud) {
+    std::vector<Element> elements;
+    PlyReader reader;
+    if (!reader.read(file_name, elements))
+        return false;
+
+    for (std::size_t i = 0; i < elements.size(); ++i) {
+        const Element& e = elements[i];
+        if (e.name == "vertex") {
+            cloud.resize(static_cast<unsigned int>(e.num_instances));
+            break;
+        }
+    }
+
+    for (std::size_t i = 0; i < elements.size(); ++i) {
+        const Element& e = elements[i];
+        if (e.name == "vertex") {
+            std::vector<vec3> points, normals;
+            for (const auto& p : e.vec3_properties) {
+                std::string name = p.name;
+                if (name.find("point") != std::string::npos)
+                    points = p;
+                else if (name.find("normal") != std::string::npos)
+                    normals = p;
+                else
+                    std::cout << "Warning: ignored property '" << name << "'" << std::endl;
+            }
+
+            if (points.size() != normals.size()) {
+                std::cerr << "the number of points does not equal to the number of normals in the file" << std::endl;
+                return false;
+            }
+            cloud.resize(points.size());
+            for (std::size_t j=0; j<points.size(); ++j)
+                cloud.at(j) = pcl::PointNormal(points[j].x, points[j].y, points[j].z, normals[j].x, normals[j].y, normals[j].z);
+        }
+        else
+            std::cout << "Warning: unknown element '" << e.name << std::endl;
+    }
+
+    return cloud.size() > 0;
+}
+
+
 float random_float(float min, float max) {
     return min + float(std::rand()) / float(RAND_MAX) * (max - min);
 }

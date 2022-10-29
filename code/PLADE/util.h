@@ -657,6 +657,8 @@ int ComputeOverlap(typename pcl::search::KdTree<PointT>::Ptr queryTree,
  */
 float average_spacing(const pcl::PointCloud<pcl::PointNormal>::Ptr cloud, int k = 6, bool accurate = false, int samples = 10000);
 
+bool load_ply_cloud(const std::string& file_name, pcl::PointCloud<pcl::PointNormal>& cloud);
+
 void save_vg(
         const pcl::PointCloud<pcl::PointNormal> &cloud,
         const std::vector<std::vector<int>> &planes,

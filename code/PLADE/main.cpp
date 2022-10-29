@@ -38,6 +38,11 @@
 
 int main(int argc, char **argv) {
 #if 1
+#if 0
+    argc = 3;
+    argv[1] = "/Users/lnan/Downloads/jitter_data/cloud_pairs.txt";
+    argv[2] = "/Users/lnan/Downloads/jitter_data/cloud_pairs_results.txt";
+#endif
     if (argc != 3 && argc != 4) {
         std::cerr << "PLADE can register two point clouds dominated by planar structures. It can be used in two ways.\n"
                    << "-------------------------------------------------------------------------------------------------\n"
@@ -99,6 +104,16 @@ int main(int argc, char **argv) {
             return EXIT_FAILURE;
         }
 
+        auto is_file = [](const std::string& filename) -> bool {
+            std::ifstream fin(filename);
+            if (fin.is_open()) {
+                fin.close();
+                return true;
+            }
+            else
+                return false;
+        };
+
         int count_success = 0;
         int count_failure = 0;
         while (!input.eof()) {
@@ -106,7 +121,12 @@ int main(int argc, char **argv) {
             while (!input.eof() && file_pair.size() < 2) {
                 std::string file_name;
                 getline(input, file_name);
-                std::cout << file_name << std::endl;
+                if (!file_name.empty()) {
+                    if (is_file(file_name))
+                        file_pair.push_back(file_name);
+                    else
+                        std::cerr << "this file doesn't exist: " << file_name << std::endl;
+                }
             }
 
             if (file_pair.size() == 2) {

@@ -864,6 +864,9 @@ namespace pcl
       curvature = p.curvature;
     }
 
+    inline PointNormal(float _x, float _y, float _z, float n_x, float n_y, float n_z, float _curvature = 0.f) :
+              _PointNormal{{{_x, _y, _z, 1.0f}}, {{n_x, n_y, n_z, 0.0f}}, {{_curvature}}} {}
+
     inline PointNormal ()
     {
       x = y = z = 0.0f;

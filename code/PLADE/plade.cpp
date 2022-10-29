@@ -662,8 +662,6 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
 }
 
 
-#include <pcl/io/ply_io.h>
-
 bool registration(Eigen::Matrix<float, 4, 4> &transformation,
                   const std::string& target_cloud_file,
                   const std::string& source_cloud_file
@@ -677,14 +675,13 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
 
     /////////////////////////////////////////////////////////////////////////
 
-    pcl::PLYReader reader;
     pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud(new pcl::PointCloud<pcl::PointNormal>);
-    if (reader.read(target_cloud_file, *target_cloud) != 0) {
+    if (!load_ply_cloud(target_cloud_file, *target_cloud)) {
         std::cerr << "loading target point cloud failed" << std::endl;
         return false;
     }
     pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud(new pcl::PointCloud<pcl::PointNormal>);
-    if (reader.read(source_cloud_file, *source_cloud) != 0) {
+    if (!load_ply_cloud(source_cloud_file, *source_cloud)) {
         std::cerr << "loading source point cloud failed" << std::endl;
         return false;
     }

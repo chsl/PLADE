@@ -187,7 +187,6 @@ std::vector<PLANE> PlaneExtraction::detect(
     PointCloud_Ransac pc;
     pc.resize(cloud.size());
 
-#pragma omp parallel for
     for (int i = 0; i < cloud.size(); ++i) {
         const auto& pn = cloud.points[i];
         pc[i] = Point(
