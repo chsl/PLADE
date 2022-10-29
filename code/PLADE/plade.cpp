@@ -644,7 +644,7 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
 
     std::vector <PLANE> target_planes = extract(target_cloud);
     if (target_planes.size() < 10) {
-        std::cerr << "two few (only " << target_planes.size() << ") planes extracted from the target point cloud"
+        std::cerr << "too few (only " << target_planes.size() << ") planes extracted from the target point cloud"
                   << std::endl;
         return false;
     }

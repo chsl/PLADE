@@ -35,7 +35,7 @@
 
 
 int main(int argc, char **argv) {
-    const int idx = 0;
+    const int idx = 3;
 
     const std::string result_file = "/Users/lnan/Downloads/jitter_data/cloud_pairs_results.txt";
     std::ifstream input(result_file);
