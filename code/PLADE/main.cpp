@@ -24,25 +24,16 @@
  */
 
 #include <fstream>
-
 #include "plade.h"
-
-#ifdef HAS_EASY3D
-#include <easy3d/viewer/viewer.h>
-#include <easy3d/core/point_cloud.h>
-#include <easy3d/renderer/drawable_points.h>
-#include <easy3d/renderer/renderer.h>
-#include <easy3d/util/logging.h>
-#endif
 
 
 int main(int argc, char **argv) {
-#if 1
-#if 0
+#if 0 // just for quick test
     argc = 3;
     argv[1] = "/Users/lnan/Downloads/jitter_data/cloud_pairs.txt";
     argv[2] = "/Users/lnan/Downloads/jitter_data/cloud_pairs_results.txt";
 #endif
+
     if (argc != 3 && argc != 4) {
         std::cerr << "PLADE can register two point clouds dominated by planar structures. It can be used in two ways.\n"
                    << "-------------------------------------------------------------------------------------------------\n"
@@ -138,7 +129,7 @@ int main(int argc, char **argv) {
                     ++ count_success;
                 }
                 else {
-                    output << "registration failed" << std::endl << std::endl;
+                    output << "registration failed, an identity matrix is recorded:\n" << Eigen::Matrix<float, 4, 4>::Identity() << std::endl << std::endl;
                     ++ count_failure;
                 }
             }
@@ -154,47 +145,4 @@ int main(int argc, char **argv) {
 
         return EXIT_SUCCESS;
     }
-
-#else
-
-    std::string data_dir = std::string(PLADE_CODE_DIR) + "/../sample_data/";
-#if 0
-    std::string target_cloud_file = data_dir + "polyhedron_target.ply";
-    std::string source_cloud_file = data_dir + "polyhedron_source.ply";
-#else
-    std::string target_cloud_file = data_dir + "room_target.ply";
-    std::string source_cloud_file = data_dir + "room_source.ply";
-#endif
-
-    Eigen::Matrix<float, 4, 4> transformation;
-    bool status = registration(transformation, target_cloud_file, source_cloud_file);
-    if (!status) {
-        std::cerr << "registration failed" << std::endl;
-        return EXIT_FAILURE;
-    }
-    std::cout << "transformation:\n" << transformation << std::endl << std::endl;
-
-#ifdef HAS_EASY3D
-    easy3d::logging::initialize();
-    easy3d::Viewer viewer("PLADE registration visualization");
-    auto target_model = viewer.add_model(target_cloud_file, true);
-    auto source_model = viewer.add_model(source_cloud_file, true);
-    target_model->renderer()->get_points_drawable("vertices")->set_uniform_coloring(easy3d::vec4(1.0, 0, 0, 1));
-    source_model->renderer()->get_points_drawable("vertices")->set_uniform_coloring(easy3d::vec4(0, 0, 1.0, 1));
-    easy3d::mat4 T(transformation.data());
-    auto src_cloud = dynamic_cast<easy3d::PointCloud*>(source_model);
-    auto points = src_cloud->get_vertex_property<easy3d::vec3>("v:point");
-    auto normals = src_cloud->get_vertex_property<easy3d::vec3>("v:normal");
-    const easy3d::mat4 N = transpose(inverse(T));
-    for (auto v : src_cloud->vertices()) {
-        points[v] = T * points[v];
-        normals[v] = N * normals[v];
-        normals[v].normalize();
-    }
-    viewer.usage_string_ = " ";
-    return viewer.run();
-#else
-    return EXIT_SUCCESS;
-#endif
-#endif
 }
