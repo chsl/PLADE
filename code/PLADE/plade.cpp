@@ -31,16 +31,17 @@
 bool registration(Eigen::Matrix<float, 4, 4> &transformation,
                   pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud,
                   pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud,
-                  int ransac_min_support_target,
-                  int ransac_min_support_source
+                  const std::vector<PLANE>& target_planes,
+                  const std::vector<PLANE>& source_planes
 ) {
-    std::cout << "#point in target point cloud: " << target_cloud->size() << std::endl;    
+    std::cout << "#point in target point cloud: " << target_cloud->size() << std::endl;
     std::cout << "#point in source point cloud: " << source_cloud->size() << std::endl;
-    std::cout << "parameter ransac_min_support_target: " << ransac_min_support_target << std::endl;
-    std::cout << "parameter ransac_min_support_source: " << ransac_min_support_source << std::endl;
+    std::cout << "#planes in target point cloud: " << target_planes.size() << std::endl;
+    std::cout << "#planes in source point cloud: " << source_planes.size() << std::endl;
+    const float average_space = average_spacing(source_cloud, 6);
+    std::cout << "average space in source point cloud: " << average_space << std::endl;
 
-    float average_space = average_spacing(source_cloud, 6);
-    std::cout << "parameter average_space: " << average_space << std::endl;
+    /////////////////////////////////////////////////////////////////////////
 
     float downSampleDistance = average_space * 4;
     float minLineConfidence = 1.0;
@@ -56,19 +57,6 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
 
     /////////////////////////////////////////////////////////////////////////
 
-    StopWatch w;
-    std::cout << "extracting planes for target point cloud...";
-    const std::vector<PLANE> target_planes = PlaneExtraction::detect(*target_cloud, ransac_min_support_target, 0.005f,
-                                                                     0.02f, 0.8f, 0.001f);
-    std::cout << "\tdone. #planes: " << target_planes.size() << std::endl;
-    std::cout << "extracting planes for source point cloud...";
-    const std::vector<PLANE> source_planes = PlaneExtraction::detect(*source_cloud, ransac_min_support_source, 0.005f,
-                                                                     0.02f, 0.8f, 0.001f);
-    std::cout << "\tdone. #planes: " << source_planes.size() << std::endl;
-    std::cout << "run time for plane extraction: " << w.time_string() << std::endl;
-
-    /////////////////////////////////////////////////////////////////////////
-
     std::vector<Eigen::Vector4f> mainPlanes;
     for (int i = 0; i < target_planes.size(); ++i) {
         const auto &n = target_planes[i].normal;
@@ -80,6 +68,8 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
         const auto &n = source_planes[i].normal;
         sourcePlanes.emplace_back(Eigen::Vector4f(n.x(), n.y(), n.z(), source_planes[i].d));
     }
+
+    StopWatch w;
 
     //compute the bounding box
     double width, height, depth;
@@ -132,7 +122,7 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
     }
 
     // compute intersection lines
-	size_t mainPlanesNum = mainPlanes.size();
+    size_t mainPlanesNum = mainPlanes.size();
     std::vector<INTERSECTION_LINE> mainIntersectionLines;
     mainIntersectionLines.reserve(mainPlanesNum * mainPlanesNum / 2);
     pcl::search::KdTree<pcl::PointXYZ>::Ptr downsampleKdtree(new pcl::search::KdTree<pcl::PointXYZ>);
@@ -262,7 +252,7 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
     //cout<<"pairlines"<<std::endl;
     ConstructPairLinesKdTree(mainIntersectionLines, mainPlanes, kdtrees8, kdtrees6, kdtrees4, mainLinesInformation,
                              scale);
-    
+
     //cout<<"pairlinesend"<<std::endl;
     //compute length of each pair of lines
     std::vector<std::vector<NearstPointsTwoLine>> mainLineLength(mainLinesNum);
@@ -588,4 +578,86 @@ bool registration(Eigen::Matrix<float, 4, 4> &transformation,
     std::cout << std::endl << "done. time: " << w.time_string() << std::endl;
 
     return true;
+}
+
+
+bool registration(Eigen::Matrix<float, 4, 4> &transformation,
+                  pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud,
+                  pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud,
+                  int ransac_min_support_target,
+                  int ransac_min_support_source
+) {
+    StopWatch w;
+    std::cout << "extracting planes for target point cloud...\n";
+    const std::vector<PLANE> target_planes = PlaneExtraction::detect(*target_cloud, ransac_min_support_target, 0.005f,
+                                                                     0.02f, 0.8f, 0.001f);
+    std::cout << "extracting planes for source point cloud...\n";
+    const std::vector<PLANE> source_planes = PlaneExtraction::detect(*source_cloud, ransac_min_support_source, 0.005f,
+                                                                     0.02f, 0.8f, 0.001f);
+    std::cout << "run time for plane extraction: " << w.time_string() << std::endl;
+
+    return registration(transformation, target_cloud, source_cloud, target_planes, source_planes);
+}
+
+
+std::vector<PLANE> extract(pcl::PointCloud<pcl::PointNormal>::Ptr cloud, int init_min_support = 10000) {
+    const int min_num = 10;
+    const int max_num = 40;
+    const int min_allowed_support = 50; // a plane much have >= this number points
+
+    std::vector<PLANE> planes = PlaneExtraction::detect(*cloud, init_min_support, 0.005f, 0.02f, 0.8f, 0.001f);
+    if (planes.size() >= min_num && planes.size() <=max_num)
+        return planes;
+
+    if (planes.size() > max_num) { // then we take the top 40
+        struct {
+            bool operator()(const PLANE& a, const PLANE& b) const { return a.size() >= b.size(); }
+        } greater;
+        std::sort(planes.begin(), planes.end(), greater);
+
+        auto result = std::vector<PLANE>(planes.begin(), planes.begin() + max_num);
+        std::cout << result.size() << " of the " << planes.size() << " extracted planes will be used for registration" << std::endl;
+        return result;
+    }
+
+    const int max_trials = 5; // max call RANSAC 5 times
+    int min_support = init_min_support / 2;
+    int trials = 1;
+    while (planes.size() < min_num && trials < max_trials && min_support >= min_allowed_support) {
+//        std::cout << "trial: " << trials << ". min support: " << min_support << std::endl;
+        planes = PlaneExtraction::detect(*cloud, min_support, 0.005f, 0.02f, 0.8f, 0.001f);
+        min_support /= 2;
+        ++trials;
+    }
+    if (trials > 1)
+        std::cout << "min_support = " << min_support << " used for extracting the " << planes.size()  << " planes from point cloud" << std::endl;
+
+    return planes;
+}
+
+
+bool registration(Eigen::Matrix<float, 4, 4> &transformation,
+                  pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud,
+                  pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud
+) {
+    StopWatch w;
+    std::cout << "extracting planes for both point clouds...\n";
+
+    std::vector <PLANE> target_planes = extract(target_cloud);
+    if (target_planes.size() < 10) {
+        std::cerr << "two few (only " << target_planes.size() << ") planes extracted from the target point cloud"
+                  << std::endl;
+        return false;
+    }
+
+    std::vector <PLANE> source_planes = extract(source_cloud);
+    if (source_planes.size() < 10) {
+        std::cerr << "two few (only " << source_planes.size() << ") planes extracted from the source point cloud"
+                  << std::endl;
+        return false;
+    }
+
+    std::cout << "run time for plane extraction: " << w.time_string() << std::endl;
+
+    return registration(transformation, target_cloud, source_cloud, target_planes, source_planes);
 }

@@ -30,8 +30,44 @@
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 
+#include "plane_extraction.h"
+
+
 /**
  * Implementation of the PLADE registration method.
+ * This method automatically tunes the RANSAC parameters such that at least 10 and at most 40 planes will be extracted
+ * and used for registration.
+ * @param transformation On success \c transformation returns the registration transformation.
+ * @param target_cloud The reference point cloud.
+ * @param source_cloud The point cloud that will be transformed to align with \c target_cloud.
+ * @return \c ture on success, otherwise \c false.
+ */
+bool registration(Eigen::Matrix<float, 4, 4> &transformation,
+                  pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud,
+                  pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud
+);
+
+/**
+ * Implementation of the PLADE registration method.
+ * This method requires the user to provide the extracted planes.
+ * and used for registration.
+ * @param transformation On success \c transformation returns the registration transformation.
+ * @param target_cloud The reference point cloud.
+ * @param source_cloud The point cloud that will be transformed to align with \c target_cloud.
+ * @param target_planes The extracted planes from the target point cloud.
+ * @param source_planes The extracted planes from the source point cloud.
+ * @return \c ture on success, otherwise \c false.
+ */
+bool registration(Eigen::Matrix<float, 4, 4> &transformation,
+                  pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud,
+                  pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud,
+                  const std::vector<PLANE>& target_planes,
+                  const std::vector<PLANE>& source_planes
+);
+
+/**
+ * Implementation of the PLADE registration method.
+ * This method requires the RANSAC parameters, so it allows to test how the plane extraction affects registration.
  * @param transformation On success \c transformation returns the registration transformation.
  * @param target_cloud The reference point cloud.
  * @param source_cloud The point cloud that will be transformed to align with \c target_cloud.
@@ -42,8 +78,8 @@
 bool registration(Eigen::Matrix<float, 4, 4> &transformation,
                   pcl::PointCloud<pcl::PointNormal>::Ptr target_cloud,
                   pcl::PointCloud<pcl::PointNormal>::Ptr source_cloud,
-                  int ransac_min_support_target = 1000,
-                  int ransac_min_support_source = 1000
+                  int ransac_min_support_target,
+                  int ransac_min_support_source
 );
 
 #endif // PLADE_H

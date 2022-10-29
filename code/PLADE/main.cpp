@@ -41,13 +41,9 @@ int main(int argc, char **argv) {
 #if 0
     std::string targetFile = data_dir + "polyhedron_target.ply";
     std::string sourceFile = data_dir + "polyhedron_source.ply";
-    int ransac_min_support_target = 1000;  // tune this so #planes in target cloud is about in [10, 40]
-    int ransac_min_support_source = 1000;  // tune this so #planes in source cloud is about in [10, 40]
 #else
     std::string targetFile = data_dir + "room_target.ply";
     std::string sourceFile = data_dir + "room_source.ply";
-    int ransac_min_support_target = 200;  // tune this so #planes in target cloud is about in [10, 40]
-    int ransac_min_support_source = 4000; // tune this so #planes in source cloud is about in [10, 40]
 #endif
 
     std::cout << "target file: " << targetFile << std::endl;
@@ -74,19 +70,14 @@ int main(int argc, char **argv) {
     bool switched = false;
     if (source_cloud->size() >= target_cloud->size() * 1.2f) {
         std::swap(target_cloud, source_cloud);
-        std::swap(ransac_min_support_target, ransac_min_support_source);
         switched = true;
         std::cout << "---->>> ATTENTION: target and source have been switched for efficiency <<<----" << std::endl;
     }
 
     Eigen::Matrix<float, 4, 4> transformation;
-    bool status = registration(transformation,
-                               target_cloud,
-                               source_cloud,
-                               ransac_min_support_target,
-                               ransac_min_support_source);
+    bool status = registration(transformation, target_cloud, source_cloud);
     if (!status) {
-        std::cerr << "registration failed";
+        std::cerr << "registration failed" << std::endl;
         return EXIT_FAILURE;
     }
 
