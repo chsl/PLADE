@@ -169,10 +169,10 @@ int DownSamplePointCloud(typename pcl::PointCloud<PointT>::Ptr &srcPoints,
     typename pcl::PointCloud<PointT> tmp;
 
     //////////////////////////////////////////////////////////////////////////
-    pcl::VoxelGrid<PointT> grid; //VoxelGrid ��һ�������ĵ��ƣ��ۼ���һ���ֲ���3D������,���²������˲���������
-    grid.setLeafSize(gridX, gridY, gridZ); //������Ԫ�����Ҷ�Ӵ�С
+    pcl::VoxelGrid<PointT> grid;
+    grid.setLeafSize(gridX, gridY, gridZ);
     grid.setInputCloud(srcPoints);
-    grid.filter(tmp); //�²������˲������洢��src��
+    grid.filter(tmp);
 
     downSamplePoints->resize(tmp.size());
     for (int i=0; i<tmp.size(); ++i) {
@@ -407,7 +407,7 @@ int ComputeMeanDistanceOfLine2Plane(INTERSECTION_LINE &line, const pcl::PointClo
         length[i].index = i;
     }
 
-    sort(length.begin(), length.end(), myCompareLess);// ��С��������
+    sort(length.begin(), length.end(), myCompareLess);
     int count = 0;
     double lengthSum = 0;
     std::vector<int> neighbor;
@@ -442,7 +442,7 @@ template <typename PointT>
 inline double
 computeLengthOfPoint23DLine(Eigen::Vector3f &lineVec, PointT &linePoint, PointT &testPoint) {
     if (lineVec[0] == 0 && lineVec[1] == 0 && lineVec[2] == 0) {
-        return -1;//ֱ�߲�������
+        return -1;
     }
     double m = lineVec[0];
     double n = lineVec[1];
@@ -532,7 +532,7 @@ int RansacExtract3Dline(pcl::PointCloud<PointT> &points, std::vector<int> &bouda
             //std::cout <<"no avalible points"<<std::endl;
             break;//no avalible points
         }
-        partial_sort(lengthIndex.begin(), lengthIndex.begin() + 1, lengthIndex.end(), myCompareGreater);//�ҵ��ڵ�����
+        partial_sort(lengthIndex.begin(), lengthIndex.begin() + 1, lengthIndex.end(), myCompareGreater);
         if (lengthIndex[0].length < minLinePointsNum) {
             continue;
         }

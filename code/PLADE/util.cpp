@@ -599,7 +599,6 @@ int ComputeTransformationUsingTwoVecAndOnePoint(Eigen::Vector3f &sourceVec1, Eig
                                                 Eigen::Vector3f &destVec1, Eigen::Vector3f &destVec2,
                                                 Eigen::Vector3f &sourcePoint, Eigen::Vector3f &targetPoint,
                                                 Eigen::Matrix3f &R, Eigen::Vector3f &T) {
-    //����SVD�������任����
     pcl::PointCloud<pcl::PointXYZ> src, dst;
     Eigen::Vector3f temp1 = sourceVec1.cross(sourceVec2);
     Eigen::Vector3f temp2 = destVec1.cross(destVec2);
@@ -677,13 +676,11 @@ int Fit3DLine(std::vector<cv::Point3f> &points, cv::Vec6f &param, float *pAccura
     }
     //////////////////////////////////////////////////////////////////////////
     cv::fitLine(points, param, CV_DIST_L2, 0, 0.01, 0.01);
-    //�ж�ֱ����Ͻ��
     if (param[0] == 0 && param[1] == 0 && param[2] == 0) {
         return -1;
     }
-    if (pAccuracy)//�����Ҫ������Ͼ���
+    if (pAccuracy)
     {
-        //����㵽ֱ�ߵľ���
         size_t pointsNum = points.size();
         double sum = 0;
         for (size_t i = 0; i < pointsNum; i++) {
@@ -1360,7 +1357,7 @@ int AreTwoPlanesPenetrable(Eigen::Vector4f &plane1, Eigen::Vector4f &plane2,
         lengthVector[i].length = (interPoints[i] - interPoints[0]).dot(direc);
         lengthVector[i].index = static_cast<int>(i);
     }
-    sort(lengthVector.begin(), lengthVector.end(), myCompareLess);// ��С��������
+    sort(lengthVector.begin(), lengthVector.end(), myCompareLess);
     if (0 == (lengthVector[0].index / 2 - lengthVector[1].index / 2)) {
         //no intersection
         isPentrable = false;
