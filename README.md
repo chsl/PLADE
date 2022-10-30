@@ -67,6 +67,39 @@ Don't have any experience with C/C++ programming?
 Have a look at <a href="https://github.com/LiangliangNan/Easy3D/blob/main/HowToBuild.md">How to build PLADE step by
 step</a>.
 
+### Usage
+
+PLADE can register two point clouds dominated by planar structures. It can be used in two ways.
+
+
+#### Usage 1: register a 'source' point cloud to a 'target' point cloud.
+
+* You can call PLADE with three arguments. The first two are the file names of a target point
+cloud and a source point cloud (the target point cloud file name always comes first). The
+third argument specifies the result file name. Below is an example:
+
+    ```commandline
+    ./PLADE  room_target.ply  room_source.ply  result.txt
+    ```
+
+    The target point cloud file name always comes first, and both point cloud files must be in
+the 'ply' format. The result file will store the registration result, which is a 4 by 4
+transformation matrix that aligns the source point cloud to the target point cloud.
+
+#### Usage 2: register a bunch of point cloud pairs.
+
+* You can call PLADE with two arguments: a file (e.g., file_pairs.txt) specifying all pairs
+of target/source point cloud files and a result file. Below is an example:
+
+    ```commandline
+    ./PLADE  file_pairs.txt  result.txt
+    ```
+
+    In 'file_pairs.txt', every two consecutive lines store two file names. The first line is the
+file name of a target point cloud, and the second line is the file name of a source point cloud.
+Both point cloud files must be in the 'ply' format. The result file will store the registration
+results, a set of 4 by 4 transformation matrices. Each matrix aligns a source point cloud to
+its corresponding target point cloud.
 
 ### Test Dataset
 

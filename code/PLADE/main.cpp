@@ -62,13 +62,13 @@ int main(int argc, char **argv) {
 
     // Usage 1: register a 'source' point cloud to a 'target' point cloud
     if (argc == 4) {
+        std::ofstream output(argv[3]);
+        if (!output.is_open()) {
+            std::cerr << "failed opening the result file: " << argv[3] << std::endl;
+            return EXIT_FAILURE;
+        }
         Eigen::Matrix<float, 4, 4> transformation;
         if (registration(transformation, argv[1], argv[2])) {
-            std::ofstream output(argv[3]);
-            if (!output.is_open()) {
-                std::cerr << "failed opening the result file: " << argv[3] << std::endl;
-                return EXIT_FAILURE;
-            }
             output << "target: " << argv[1] << std::endl;
             output << "source: " << argv[2] << std::endl;
             output << "transformation:\n" << transformation << std::endl;
@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
             return EXIT_SUCCESS;
         }
         else {
-            std::cerr << "registration failed" << std::endl;
+            output << "registration failed, an identity matrix is recorded:\n" << Eigen::Matrix<float, 4, 4>::Identity() << std::endl;
             return EXIT_FAILURE;
         }
     }
