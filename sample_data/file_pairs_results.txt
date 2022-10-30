@@ -1,16 +1,16 @@
 target: /Users/lnan/Documents/Projects/PLADE/sample_data/polyhedron_target.ply
 source: /Users/lnan/Documents/Projects/PLADE/sample_data/polyhedron_source.ply
 transformation:
- -0.506082   0.860669  0.0559443  -0.252573
-  0.821345   0.500721  -0.273261   0.863338
-   -0.2632 -0.0923429  -0.960312   0.154751
+ -0.506082   0.860669  0.0559446  -0.252576
+  0.821345   0.500721  -0.273261   0.863337
+   -0.2632 -0.0923425  -0.960312   0.154749
          0          0          0          1
 
 target: /Users/lnan/Documents/Projects/PLADE/sample_data/room_target.ply
 source: /Users/lnan/Documents/Projects/PLADE/sample_data/room_source.ply
 transformation:
- 0.919217 -0.361996  0.154916  -0.68123
- 0.356881  0.599723 -0.716218   3.53814
- 0.166362  0.713647  0.680465 -0.640905
-       -0         0        -0         1
+ 0.105767  0.415189  0.903566 -0.849309
+-0.733898 -0.580536  0.352663   3.05568
+ 0.670974 -0.700426  0.243305 -0.379338
+        0         0        -0         1
 
