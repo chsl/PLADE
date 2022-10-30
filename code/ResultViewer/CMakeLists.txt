@@ -14,3 +14,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 		)
 
 target_link_libraries( ${PROJECT_NAME} easy3d::viewer)
+
+# The resources directory
+target_compile_definitions(
+		${PROJECT_NAME}
+		PRIVATE
+		"PLADE_CODE_DIR=\"${PLADE_ROOT}\""
+)

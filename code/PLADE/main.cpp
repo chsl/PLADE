@@ -28,10 +28,22 @@
 
 
 int main(int argc, char **argv) {
-#if 0 // just for quick test
+#if 0  // for quick test of the batch mode
     argc = 3;
-    argv[1] = "/Users/lnan/Downloads/jitter_data/cloud_pairs.txt";
-    argv[2] = "/Users/lnan/Downloads/jitter_data/cloud_pairs_results.txt";
+    const std::string dir = std::string(PLADE_CODE_DIR) + "/../sample_data/";
+    const std::string pairs_file = dir + "file_pairs.txt";
+    const std::string result_file = dir + "file_pairs_results.txt";
+    argv[1] = const_cast<char *>(pairs_file.data());
+    argv[2] = const_cast<char *>(result_file.data());
+#elif 0  // for quick test of the single mode
+    argc = 4;
+    const std::string dir = std::string(PLADE_CODE_DIR) + "/../sample_data/";
+    const std::string target_cloud_file = dir + "room_target.ply";
+    const std::string source_cloud_file = dir + "room_source.ply";
+    const std::string result_file = dir + "room_source_result.txt";
+    argv[1] = const_cast<char *>(target_cloud_file.data());
+    argv[2] = const_cast<char *>(source_cloud_file.data());
+    argv[3] = const_cast<char *>(result_file.data());
 #endif
 
     if (argc != 3 && argc != 4) {

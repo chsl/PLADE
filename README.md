@@ -86,20 +86,21 @@ third argument specifies the result file name. Below is an example:
 the 'ply' format. The result file will store the registration result, which is a 4 by 4
 transformation matrix that aligns the source point cloud to the target point cloud.
 
-#### Usage 2: register a bunch of point cloud pairs.
+#### Usage 2: register a bunch of point cloud pairs in a batch mode.
 
-* You can call PLADE with two arguments: a file (e.g., file_pairs.txt) specifying all pairs
-of target/source point cloud files and a result file. Below is an example:
+* You can call PLADE with two arguments: a file specifying all pairs of target/source point cloud 
+  files and a result file. Below is an example:
 
     ```commandline
-    ./PLADE  file_pairs.txt  result.txt
+    ./PLADE  file_pairs.txt  file_pairs_results.txt
     ```
 
-    In 'file_pairs.txt', every two consecutive lines store two file names. The first line is the
-file name of a target point cloud, and the second line is the file name of a source point cloud.
-Both point cloud files must be in the 'ply' format. The result file will store the registration
-results, a set of 4 by 4 transformation matrices. Each matrix aligns a source point cloud to
-its corresponding target point cloud.
+    In ```file_pairs.txt```, every two consecutive lines store two file names (see an example 
+[here](./sample_data/file_pairs.txt)). The first line is the file name of a target point cloud, 
+and the second line is the file name of a source point cloud. Both point cloud files must be in
+the 'ply' format. The result file will store the registration results, a set of 4 by 4 transformation 
+matrices. Each matrix aligns a source point cloud to its corresponding target point cloud (see an 
+example [here](./sample_data/file_pairs_results.txt)).
 
 ### Test Dataset
 

@@ -35,9 +35,11 @@
 
 
 int main(int argc, char **argv) {
-    const int idx = 1;
+    const int idx = 0;
 
-    const std::string result_file = "/Users/lnan/Downloads/jitter_data/cloud_pairs_results.txt";
+    const std::string dir = std::string(PLADE_CODE_DIR) + "/../sample_data/";
+    const std::string result_file = dir + "file_pairs_results.txt";
+
     std::ifstream input(result_file);
     if (!input.is_open()) {
         std::cerr << "failed loading result file: " << result_file << std::endl;

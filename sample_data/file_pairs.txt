@@ -1,0 +1,7 @@
+/Users/lnan/Documents/Projects/PLADE/sample_data/polyhedron_target.ply
+/Users/lnan/Documents/Projects/PLADE/sample_data/polyhedron_source.ply
+
+/Users/lnan/Documents/Projects/PLADE/sample_data/room_target.ply
+/Users/lnan/Documents/Projects/PLADE/sample_data/room_source.ply
+
+
