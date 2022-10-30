@@ -1,6 +1,8 @@
 ### PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap
 
-<img src="./image/plade.png">
+<p align="center"> 
+  <img src="./image/plade.png">
+<p/>
 
 This repository contains implementation of the point cloud registration method described in the following paper
 
