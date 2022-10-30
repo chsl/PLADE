@@ -2,22 +2,15 @@
 
 <img src="./image/plade.png">
 
-This repository contains implementation of the point cloud registration method described in 
+This repository contains implementation of the point cloud registration method described in the following paper
 
-```bibtex
-@article{chen2019plade,
-  title={PLADE: A plane-based descriptor for point cloud registration with small overlap},
-  author={Chen, Songlin and Nan, Liangliang and Xia, Renbo and Zhao, Jibin and Wonka, Peter},
-  journal={IEEE Transactions on Geoscience and Remote Sensing},
-  volume={58},
-  number={4},
-  pages={2530--2540},
-  year={2019},
-  publisher={IEEE}
-}
-```
+  ```
+  PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap
+  Songlin Chen, Liangliang Nan, Renbo Xia, Jibin Zhao, and Peter Wonka
+  IEEE Transactions on Geoscience and Remote Sensing. 58(4), 2530-2540, 2020
+  ```
 
-### PLADE repository layout
+### Repository layout
 The repository contains a `CMakeLists.txt` file (in the root directory of the repository) that serves as an anchor for
 configuring and building programs, and a set of subfolders:
 * [`code`](https://github.com/chsl/PLADE/tree/master/code) - source code of PLADE implementation.
@@ -28,7 +21,7 @@ The core registration function is defined in [plade.h](./code/PLADE/plade.h).
 In this example, the paths to the input point clouds are hard-coded in the `main()` function in [main.cpp](https://github.com/chsl/PLADE/blob/9abacc087f2590452c592162ec1d2b2549a77271/code/PLADE/main.cpp#L48). 
 To use your data, you will need to modify these paths.
 
-### Build PLADE
+### Build
 
 PLADE depends on [boost](https://www.boost.org/). Please install [boost](https://www.boost.org/) first.
 
@@ -67,7 +60,7 @@ Don't have any experience with C/C++ programming?
 Have a look at <a href="https://github.com/LiangliangNan/Easy3D/blob/main/HowToBuild.md">How to build PLADE step by
 step</a>.
 
-### Usage
+### Usages
 
 PLADE can register two point clouds dominated by planar structures. It can be used in two ways.
 
