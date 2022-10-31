@@ -44,14 +44,12 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 		${CMAKE_BINARY_DIR}/include
 	)
 
-
 # The resources directory
 target_compile_definitions(
 		${PROJECT_NAME}
 		PRIVATE
 		"PLADE_CODE_DIR=\"${PLADE_ROOT}\""
 )
-
 
 target_link_libraries( ${PROJECT_NAME} ann ransac rply opencv_core opencv_imgproc pcl_common pcl_kdtree pcl_filters)
 target_link_libraries( ${PROJECT_NAME} Boost::thread)

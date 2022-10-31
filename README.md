@@ -34,19 +34,19 @@ There are many options to build PLADE. Choose one of the following (not an exhau
   Visual Studio).
     - On Linux or macOS, you can simply
       ```
-          $ cd path-to-root-dir-of-PLADE
-          $ mkdir Release
-          $ cd Release
-          $ cmake -DCMAKE_BUILD_TYPE=Release ..
-          $ make
+      $ cd path-to-root-dir-of-PLADE
+      $ mkdir Release
+      $ cd Release
+      $ cmake -DCMAKE_BUILD_TYPE=Release ..
+      $ make
       ```
     - On Windows with Microsoft Visual Studio, use the `x64 Native Tools Command Prompt for VS XXXX` (**don't** use the x86 one), then
       ```
-          $ cd path-to-root-dir-of-PLADE
-          $ mkdir Release
-          $ cd Release
-          $ cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..
-          $ nmake
+      $ cd path-to-root-dir-of-PLADE
+      $ mkdir Release
+      $ cd Release
+      $ cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+      $ nmake
       ```
 
 - Option 2: Use any IDE that can directly handle CMakeLists files to open the `CMakeLists.txt` in the **root** directory of
@@ -99,8 +99,7 @@ example [here](./sample_data/file_pairs_results.txt)).
 [RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
 This dataset is part of the PLADE work.
 
-**---> Attention <---** 
-
+**Note: ** 
 This implementation requires that the input point clouds have oriented normals for faster convergency. Actually, this requirement can be relieved by allowing a plane (a group of 3D points) to have two opposite orientations. This way, more descriptors (consisdering both orientations of each plane) will be generated and matched. This is slow but can be very useful in practice. As for the demo purpose, the code in this repository does not implement it and thus the user should provide oriented point normals.
 
 ### Citation

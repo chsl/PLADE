@@ -128,7 +128,7 @@ int main(int argc, char **argv) {
                     if (is_file(file_name))
                         file_pair.push_back(file_name);
                     else
-                        std::cerr << "this file doesn't exist: " << file_name << std::endl;
+                        std::cerr << "file doesn't exist: " << file_name << std::endl;
                 }
             }
 

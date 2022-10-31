@@ -31,11 +31,12 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 ################################################################################
 
-add_subdirectory(3rd_party)
-add_subdirectory(PLADE)
-
 # request Easy3D
 find_package(Easy3D COMPONENTS viewer QUIET)
-if (Easy3D_FOUND)
+
+add_subdirectory(3rd_party)
+if (Easy3D_viewer_FOUND)
     add_subdirectory(ResultViewer)
 endif ()
+
+add_subdirectory(PLADE)
