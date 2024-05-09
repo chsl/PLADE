@@ -57,10 +57,10 @@ There are many options to build PLADE. Choose one of the following (not an exhau
     ```
 
 - Option 2: Use any IDE that can directly handle CMakeLists files to open the `CMakeLists.txt` in the **root** directory of
-  PLADE. Then you should have obtained a usable project and just build it. I recommend using
+  PLADE. Then you should have obtained a usable project to build. I recommend using
   [CLion](https://www.jetbrains.com/clion/) or [QtCreator](https://www.qt.io/product). For Windows users: your IDE must be set for `x64`.
 
-- Option 3: Use CMake-Gui to generate project files for your IDE. Then load the project to your IDE and build it. For Windows users: your IDE must be set for `x64`.
+- Option 3: Use CMake-Gui to generate project files for your IDE, and then load the project to your IDE to build it. For Windows users: your IDE must be set for `x64`.
 
 Don't have any experience with C/C++ programming?
 Have a look at <a href="https://github.com/LiangliangNan/Easy3D/blob/main/HowToBuild.md">How to build PLADE step by
@@ -107,7 +107,7 @@ PLADE can register two point clouds dominated by planar structures. It can be us
 This dataset is part of the PLADE work.
 
 **Note: **
-This implementation requires that the input point clouds have oriented normals for faster convergence. This requirement can be relieved by allowing a plane (a group of 3D points) to have two opposite orientations. This way, more descriptors (considering both orientations of each plane) will be generated and matched. This is slow but can be very useful in practice. As for the demo purpose, the code in this repository does not implement it and thus the user should provide oriented point normals.
+This implementation requires that the input point clouds have oriented normals for faster convergence. This requirement can be relieved by allowing a plane (a group of 3D points) to have two opposite orientations. This way, more descriptors (considering both orientations for each plane) will be generated and matched. This is slow but can be very useful in practice. As for the demo purpose, the code in this repository does not implement it, and thus the user should provide oriented point normals.
 
 ### Citation
 If you use PLADE or the [RESSO](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html) dataset in scientific work, I kindly ask you to cite it:
