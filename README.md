@@ -4,17 +4,24 @@
   <img src="./image/plade.png">
 <p/>
 
-This repository contains implementation of the point cloud registration method described in the following paper
+This repository contains an implementation of the point cloud registration method described in the following paper with slight modifications:
 
   ```
   PLADE: A Plane-based Descriptor for Point Cloud Registration with Small Overlap
   Songlin Chen, Liangliang Nan, Renbo Xia, Jibin Zhao, and Peter Wonka
   IEEE Transactions on Geoscience and Remote Sensing. 58(4), 2530-2540, 2020
   ```
+The main change is to omit the use of boundary lines. The detection of boundary lines to form descriptors primarily 
+comes into play when dealing with extremely incomplete point clouds where the point cloud fails to capture sufficient 
+planar regions of a scene (thus no descriptors could be constructed). Since point clouds typically contain more than 
+sufficient planar regions to construct descriptors and extracting planes tends to be more robust than extracting 
+boundary lines, detecting and utilizing boundary lines becomes unnecessary. Resorting to additional boundary lines 
+only introduces redundant descriptors and increases computational overhead without significant contribution to the 
+registration process.
 
 ### Repository layout
 The repository contains a `CMakeLists.txt` file (in the root directory of the repository) that serves as an anchor for
-configuring and building programs, and a set of subfolders:
+configuring and building programs and a set of subfolders:
 * [`code`](https://github.com/chsl/PLADE/tree/master/code) - source code of PLADE implementation.
 * [`sample_data`](https://github.com/chsl/PLADE/tree/master/sample_data) - two pairs of test point clouds.
 
@@ -32,22 +39,22 @@ There are many options to build PLADE. Choose one of the following (not an exhau
 
 - Option 1 (purely on the command line): Use CMake to generate Makefiles and then `make` (on Linux/macOS) or `nmake`(on Windows with Microsoft
   Visual Studio).
-    - On Linux or macOS, you can simply
-      ```
-      $ cd path-to-root-dir-of-PLADE
-      $ mkdir Release
-      $ cd Release
-      $ cmake -DCMAKE_BUILD_TYPE=Release ..
-      $ make
-      ```
-    - On Windows with Microsoft Visual Studio, use the `x64 Native Tools Command Prompt for VS XXXX` (**don't** use the x86 one), then
-      ```
-      $ cd path-to-root-dir-of-PLADE
-      $ mkdir Release
-      $ cd Release
-      $ cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..
-      $ nmake
-      ```
+  - On Linux or macOS, you can simply
+    ```
+    $ cd path-to-root-dir-of-PLADE
+    $ mkdir Release
+    $ cd Release
+    $ cmake -DCMAKE_BUILD_TYPE=Release ..
+    $ make
+    ```
+  - On Windows with Microsoft Visual Studio, use the `x64 Native Tools Command Prompt for VS XXXX` (**don't** use the x86 one), then
+    ```
+    $ cd path-to-root-dir-of-PLADE
+    $ mkdir Release
+    $ cd Release
+    $ cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+    $ nmake
+    ```
 
 - Option 2: Use any IDE that can directly handle CMakeLists files to open the `CMakeLists.txt` in the **root** directory of
   PLADE. Then you should have obtained a usable project and just build it. I recommend using
@@ -67,40 +74,40 @@ PLADE can register two point clouds dominated by planar structures. It can be us
 #### Usage 1: register a 'source' point cloud to a 'target' point cloud.
 
 * You can call PLADE with three arguments. The first two are the file names of a target point
-cloud and a source point cloud (the target point cloud file name always comes first). The
-third argument specifies the result file name. Below is an example:
+  cloud and a source point cloud (the target point cloud file name always comes first). The
+  third argument specifies the result file name. Below is an example:
 
     ```commandline
     ./PLADE  room_target.ply  room_source.ply  result.txt
     ```
 
-    The target point cloud file name always comes first, and both point cloud files must be in
-the 'ply' format. The result file will store the registration result, which is a 4 by 4
-transformation matrix that aligns the source point cloud to the target point cloud.
+  The target point cloud file name always comes first, and both point cloud files must be in
+  the 'ply' format. The resulting file will store the registration result, which is a 4 by 4
+  transformation matrix that aligns the source point cloud to the target point cloud.
 
-#### Usage 2: register a bunch of point cloud pairs in a batch mode.
+#### Usage 2: register a bunch of point cloud pairs in batch mode.
 
-* You can call PLADE with two arguments: a file specifying all pairs of target/source point cloud 
+* You can call PLADE with two arguments: a file specifying all pairs of target/source point cloud
   files and a result file. Below is an example:
 
     ```commandline
     ./PLADE  file_pairs.txt  file_pairs_results.txt
     ```
 
-    In ```file_pairs.txt```, every two consecutive lines store two file names (see an example 
-[here](./sample_data/file_pairs.txt)). The first line is the file name of a target point cloud, 
-and the second line is the file name of a source point cloud. Both point cloud files must be in
-the 'ply' format. The result file will store the registration results, a set of 4 by 4 transformation 
-matrices. Each matrix aligns a source point cloud to its corresponding target point cloud (see an 
-example [here](./sample_data/file_pairs_results.txt)).
+  In ```file_pairs.txt```, every two consecutive lines store two file names (see an example
+  [here](./sample_data/file_pairs.txt)). The first line is the file name of a target point cloud,
+  and the second line is the file name of a source point cloud. Both point cloud files must be in
+  the 'ply' format. The resulting file will store the registration results, a set of 4 by 4 transformation
+  matrices. Each matrix aligns a source point cloud to its corresponding target point cloud (see an
+  example [here](./sample_data/file_pairs_results.txt)).
 
 ### Test Dataset
 
 [RESSO: Real-world Scans with Small Overlap](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html).
 This dataset is part of the PLADE work.
 
-**Note: ** 
-This implementation requires that the input point clouds have oriented normals for faster convergency. Actually, this requirement can be relieved by allowing a plane (a group of 3D points) to have two opposite orientations. This way, more descriptors (consisdering both orientations of each plane) will be generated and matched. This is slow but can be very useful in practice. As for the demo purpose, the code in this repository does not implement it and thus the user should provide oriented point normals.
+**Note: **
+This implementation requires that the input point clouds have oriented normals for faster convergence. This requirement can be relieved by allowing a plane (a group of 3D points) to have two opposite orientations. This way, more descriptors (considering both orientations of each plane) will be generated and matched. This is slow but can be very useful in practice. As for the demo purpose, the code in this repository does not implement it and thus the user should provide oriented point normals.
 
 ### Citation
 If you use PLADE or the [RESSO](https://3d.bk.tudelft.nl/liangliang/publications/2019/plade/resso.html) dataset in scientific work, I kindly ask you to cite it:

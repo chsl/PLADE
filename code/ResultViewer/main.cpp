@@ -90,6 +90,6 @@ int main(int argc, char **argv) {
         normals[v] = N * normals[v];
         normals[v].normalize();
     }
-    viewer.usage_string_ = " ";
+    viewer.set_usage(" ");
     return viewer.run();
 }
